@@ -1,4 +1,3 @@
-
 from typing import Annotated
 
 from langchain.chat_models import init_chat_model
@@ -7,7 +6,6 @@ from typing_extensions import TypedDict
 from langgraph.graph import StateGraph, START
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
-
 
 import logging
 import os
@@ -61,19 +59,82 @@ graph_builder.add_edge(START, "chatbot")
 graph = graph_builder.compile()
 graph_configured = True
 
+# Memory setup
+from bedrock_agentcore.memory import MemoryClient
+
+memory_id = os.getenv("AGENTCORE_MEMORY_ID")
+memory_client = None
+
+if memory_id:
+    print(f"Memory enabled: {memory_id}")
+    memory_client = MemoryClient(region_name=os.getenv("AWS_REGION", "us-east-1"))
+else:
+    print("Memory disabled (AGENTCORE_MEMORY_ID not set)")
+
 from bedrock_agentcore.runtime import BedrockAgentCoreApp
 app = BedrockAgentCoreApp()
 
 @app.entrypoint
 def agent_invocation(payload, context):
-    
+
     print("received payload")
     print(payload)
-    
-    tmp_msg = {"messages": [{"role": "user", "content": payload.get("prompt", "No prompt found in input, please guide customer as to what tools can be used")}]}
-    tmp_output = graph.invoke(tmp_msg)
+
+    user_id = payload.get("user_id", "anonymous")
+    session_id = payload.get("session_id", "default")
+    prompt = payload.get("prompt", "No prompt found in input, please guide customer as to what tools can be used")
+
+    # Load conversation history from memory
+    messages = []
+    if memory_client and memory_id:
+        try:
+            events = memory_client.list_events(
+                memory_id=memory_id,
+                actor_id=user_id,
+                session_id=session_id
+            )
+            # events is a list directly
+            event_list = events if isinstance(events, list) else events.get("events", [])
+            for event in event_list:
+                # payload is a LIST of message objects
+                payload_list = event.get("payload", []) if isinstance(event, dict) else []
+                for msg in payload_list:
+                    if "conversational" in msg:
+                        conv = msg["conversational"]
+                        role = conv.get("role", "").lower()
+                        content = conv.get("content", {}).get("text", "")
+                        if role == "user":
+                            messages.append({"role": "user", "content": content})
+                        elif role == "assistant":
+                            messages.append({"role": "assistant", "content": content})
+            print(f"Loaded {len(messages)} messages from memory")
+        except Exception as e:
+            print(f"Error loading memory: {e}")
+
+    # Add current prompt
+    messages.append({"role": "user", "content": prompt})
+
+    tmp_output = graph.invoke({"messages": messages})
     print(tmp_output)
 
-    return {"result": tmp_output['messages'][-1].content}
+    response_content = tmp_output['messages'][-1].content
+
+    # Save conversation to memory
+    if memory_client and memory_id:
+        try:
+            memory_client.create_event(
+                memory_id=memory_id,
+                actor_id=user_id,
+                session_id=session_id,
+                messages=[
+                    (prompt, "USER"),
+                    (response_content, "ASSISTANT")
+                ]
+            )
+            print("Saved conversation to memory")
+        except Exception as e:
+            print(f"Error saving to memory: {e}")
+
+    return {"result": response_content}
 
 app.run()

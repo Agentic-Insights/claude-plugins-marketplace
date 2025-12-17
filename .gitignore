@@ -15,3 +15,6 @@ wheels/
 # AgentCore deployment artifacts (regenerate with: agentcore configure)
 .bedrock_agentcore.yaml
 .bedrock_agentcore/
+
+# Claude Code local settings
+.claude/settings.local.json

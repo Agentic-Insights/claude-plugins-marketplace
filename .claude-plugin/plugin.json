@@ -6,7 +6,7 @@
     "name": "agentic-insights"
   },
   "repository": "https://github.com/Agentic-Insights/agentcore-lg",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "keywords": [
     "aws",
     "bedrock",

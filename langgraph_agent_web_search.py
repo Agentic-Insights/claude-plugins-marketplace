@@ -62,14 +62,14 @@ graph_configured = True
 # Memory setup
 from bedrock_agentcore.memory import MemoryClient
 
-memory_id = os.getenv("AGENTCORE_MEMORY_ID")
+memory_id = os.getenv("BEDROCK_AGENTCORE_MEMORY_ID")
 memory_client = None
 
 if memory_id:
     print(f"Memory enabled: {memory_id}")
     memory_client = MemoryClient(region_name=os.getenv("AWS_REGION", "us-east-1"))
 else:
-    print("Memory disabled (AGENTCORE_MEMORY_ID not set)")
+    print("Memory disabled (BEDROCK_AGENTCORE_MEMORY_ID not set)")
 
 from bedrock_agentcore.runtime import BedrockAgentCoreApp
 app = BedrockAgentCoreApp()

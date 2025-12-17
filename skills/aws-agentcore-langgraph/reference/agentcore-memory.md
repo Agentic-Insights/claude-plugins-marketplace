@@ -6,6 +6,9 @@
 - [Long-Term Memory (LTM)](#long-term-memory-ltm)
 - [LangGraph + AgentCore Memory](#langgraph--agentcore-memory)
 - [CLI Memory Commands](#cli-memory-commands)
+- [Environment Variables Reference](#environment-variables-reference)
+- [Episodic Memory (December 2025)](#episodic-memory-december-2025)
+- [Official Documentation](#official-documentation)
 
 ## Memory Types
 
@@ -108,15 +111,29 @@ Automatically extracts and stores insights across sessions.
 
 ## LangGraph + AgentCore Memory
 
-### Passing Memory ID to Container
+### How Memory ID is Passed to Your Agent
 
-Memory ID must be set in the **Dockerfile** ENV, not just .env (container doesn't read .env):
+**The toolkit automatically injects `BEDROCK_AGENTCORE_MEMORY_ID`** as an environment variable when you run `agentcore launch`. You do NOT need to:
+- Hardcode it in the Dockerfile
+- Set it in .env files
+- Pass it manually
 
-```dockerfile
-ENV AGENTCORE_MEMORY_ID=my_memory-abc123
+The toolkit passes environment variables through the runtime API's `environmentVariables` parameter during deployment.
+
+**In your agent code, use:**
+```python
+memory_id = os.getenv("BEDROCK_AGENTCORE_MEMORY_ID")
 ```
 
-Or add to your generated Dockerfile at `.bedrock_agentcore/<agent_name>/Dockerfile`.
+**Debugging memory issues:**
+```bash
+# Check runtime logs to verify memory is enabled
+aws logs tail /aws/bedrock-agentcore/runtimes/<agent-id>-DEFAULT \
+  --log-stream-name-prefix "$(date +%Y/%m/%d)/[runtime-logs]" \
+  --region us-east-1 --since 5m
+
+# Look for: "Memory enabled: <memory_id>" or "Memory disabled (BEDROCK_AGENTCORE_MEMORY_ID not set)"
+```
 
 ### Pattern: Full Working Example
 
@@ -125,8 +142,8 @@ import os
 from bedrock_agentcore.memory import MemoryClient
 from bedrock_agentcore.runtime import BedrockAgentCoreApp
 
-# Memory setup at module level
-memory_id = os.getenv("AGENTCORE_MEMORY_ID")
+# Memory setup at module level - toolkit auto-injects this env var
+memory_id = os.getenv("BEDROCK_AGENTCORE_MEMORY_ID")
 memory_client = None
 if memory_id:
     memory_client = MemoryClient(region_name=os.getenv("AWS_REGION", "us-east-1"))
@@ -274,3 +291,41 @@ Install with:
 ```bash
 pip install langgraph-checkpoint-postgres  # or -sqlite, -redis
 ```
+
+## Environment Variables Reference
+
+**Auto-injected by toolkit** (don't set manually):
+| Variable | Description |
+|----------|-------------|
+| `BEDROCK_AGENTCORE_MEMORY_ID` | Memory resource ID |
+| `BEDROCK_AGENTCORE_MEMORY_NAME` | Memory resource name |
+
+**Custom env vars** - pass via CLI:
+```bash
+agentcore launch --env GUARDRAIL_ID="xyz123" --env KNOWLEDGE_BASE_ID="abc456"
+```
+
+**Related env vars for other services:**
+| Category | Variables |
+|----------|-----------|
+| Identity/OAuth | `IDENTITY_POOL_ID`, `IDENTITY_CLIENT_ID`, `IDENTITY_CLIENT_SECRET`, `IDENTITY_DISCOVERY_URL` |
+| Runtime Auth | `RUNTIME_POOL_ID`, `RUNTIME_CLIENT_ID`, `RUNTIME_DISCOVERY_URL` |
+| Observability | `AGENT_OBSERVABILITY_ENABLED=true`, `OTEL_PYTHON_DISTRO=aws_distro` |
+| Gateway | `GATEWAY_MCP_URL`, `GATEWAY_ACCESS_TOKEN` |
+
+## Episodic Memory (December 2025)
+
+New capability allowing agents to learn from experiences across sessions:
+- Builds knowledge over time
+- Creates more human-like interactions
+- Automatically enabled with LTM configuration
+
+**Availability**: US East (Ohio, N. Virginia), US West (Oregon), Asia Pacific (Mumbai, Singapore, Sydney, Tokyo), Europe (Frankfurt, Ireland)
+
+## Documentation
+
+| Resource | URL |
+|----------|-----|
+| Memory Overview | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html |
+| Memory Get Started | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory-get-started.html |
+| Memory Strategies | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory-strategies.html |

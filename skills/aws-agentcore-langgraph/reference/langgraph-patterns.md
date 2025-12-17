@@ -300,3 +300,12 @@ def invoke(payload, context):
     graph = builder.compile()  # Expensive!
     return graph.invoke(...)
 ```
+
+## Documentation
+
+| Resource | URL |
+|----------|-----|
+| LangGraph Overview | https://langchain-ai.github.io/langgraph/ |
+| LangGraph Concepts | https://langchain-ai.github.io/langgraph/concepts/ |
+| StateGraph Reference | https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.StateGraph |
+| Checkpointing Guide | https://langchain-ai.github.io/langgraph/concepts/persistence/ |

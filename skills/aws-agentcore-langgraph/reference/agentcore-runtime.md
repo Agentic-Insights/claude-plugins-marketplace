@@ -234,3 +234,11 @@ If you get `ResourceNotFoundException: Model use case details have not been subm
 2. Request access for the Anthropic model
 3. Fill out the Anthropic use case form
 4. Wait ~15 minutes for approval
+
+## Documentation
+
+| Resource | URL |
+|----------|-----|
+| Runtime Overview | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime.html |
+| Runtime Quick Start | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-quick-start.html |
+| Bedrock Model IDs | https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html |

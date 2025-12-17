@@ -63,19 +63,21 @@ agentcore destroy
 
 ```
 Need persistent memory across sessions?
-├── Yes → Use AgentCore Memory (references/memory.md)
+├── Yes → Use AgentCore Memory (reference/agentcore-memory.md)
 │         - STM: turn-by-turn within session
 │         - LTM: insights across sessions/agents
 └── No → Use LangGraph checkpointing only
 
 Need external API tools?
-├── Yes → Use AgentCore Gateway (references/gateway.md)
-│         - OpenAPI → MCP tools
-│         - Lambda → MCP tools
+├── Yes → Use AgentCore Gateway (reference/agentcore-gateway.md)
+│         - Lambda → MCP tools (custom code, DB queries)
+│         - OpenAPI → MCP tools (REST APIs)
+│         - MCP Server → Unite existing MCPs (Nov 2025)
+│         - API Gateway → Direct stage integration
 └── No → Use LangGraph tools directly
 
 Complex multi-step workflow?
-├── Yes → Review LangGraph patterns (references/langgraph-patterns.md)
+├── Yes → Review LangGraph patterns (reference/langgraph-patterns.md)
 └── No → Use quick start above
 ```
 
@@ -92,10 +94,29 @@ Complex multi-step workflow?
 
 ## Reference Files
 
-- **Runtime patterns**: See [references/runtime.md](references/runtime.md) for streaming, async, tools examples
-- **Memory integration**: See [references/memory.md](references/memory.md) for STM/LTM patterns
-- **Gateway/MCP tools**: See [references/gateway.md](references/gateway.md) for tool integration
-- **LangGraph 1.0**: See [references/langgraph-patterns.md](references/langgraph-patterns.md) for StateGraph best practices
+- **AgentCore CLI**: See [reference/agentcore-cli.md](reference/agentcore-cli.md) for all primitives + AWS CLI commands
+- **AgentCore Runtime**: See [reference/agentcore-runtime.md](reference/agentcore-runtime.md) for streaming, async, tools examples
+- **AgentCore Memory**: See [reference/agentcore-memory.md](reference/agentcore-memory.md) for STM/LTM patterns + env vars
+- **AgentCore Gateway**: See [reference/agentcore-gateway.md](reference/agentcore-gateway.md) for MCP tool integration
+- **LangGraph Patterns**: See [reference/langgraph-patterns.md](reference/langgraph-patterns.md) for StateGraph best practices
+
+## Utility Scripts
+
+Quick discovery scripts (run from skill directory):
+
+```bash
+# List all AgentCore resources in region
+./scripts/list-all.sh us-east-1 ag
+
+# Get agent details
+./scripts/agent-details.sh langgraph_agent_web_search-Fpc6MyE5Eh us-east-1 ag
+
+# Tail runtime logs
+./scripts/tail-logs.sh langgraph_agent_web_search-Fpc6MyE5Eh 5m us-east-1 ag
+
+# Get memory details
+./scripts/memory-details.sh langgraph_agent_web_search_mem-4DFwz46tZN us-east-1 ag
+```
 
 ## Common Patterns
 
@@ -144,5 +165,31 @@ async def invoke(payload, context):
 | `Invalid agent name` | Use underscores not hyphens: `my_agent` not `my-agent` |
 | Platform mismatch warning (amd64 vs arm64) | Normal - CodeBuild handles cross-platform ARM64 builds automatically |
 | Memory `list_events` returns empty | ~10s eventual consistency delay after `create_event`. Also check actor_id/session_id match |
-| `'list' object has no attribute 'get'` | `list_events` returns list directly, and `event['payload']` is also a list. See memory.md |
+| `'list' object has no attribute 'get'` | `list_events` returns list directly, and `event['payload']` is also a list. See agentcore-memory.md |
 | Container not reading .env | Set env vars in Dockerfile ENV, not .env file (container doesn't load .env) |
+| Memory not working after deploy | Check logs for "Memory enabled/disabled". Toolkit auto-injects `BEDROCK_AGENTCORE_MEMORY_ID` - don't hardcode in Dockerfile |
+| "Memory disabled" in logs | Verify memory configured during `agentcore configure` and `.bedrock_agentcore.yaml` has `memory.memory_id` set |
+| Gateway "Unknown tool" error | Lambda must strip `___` prefix from `bedrockAgentCoreToolName`. See agentcore-gateway.md |
+| Gateway Lambda timeout | Lambda event format differs from API Gateway - flat dict of input properties only |
+
+## Late 2025 Features (re:Invent)
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| **MCP Server Targets** | Unite multiple MCP servers behind single Gateway (Nov 2025) | GA |
+| **Policy** | Natural language guardrails (e.g., "allow refunds up to $100") | Preview |
+| **Evaluations** | 13 pre-built metrics for correctness, safety, tool accuracy | Preview |
+| **Bidirectional Streaming** | Voice agents: listen/respond simultaneously, handle interruptions | GA |
+| **Episodic Memory** | Agents learn from experiences across sessions | GA |
+
+## Documentation
+
+**General Resources** (see topic-specific docs in each reference file):
+
+| Resource | URL |
+|----------|-----|
+| AgentCore Docs | https://docs.aws.amazon.com/bedrock-agentcore/ |
+| Starter Toolkit | https://aws.github.io/bedrock-agentcore-starter-toolkit/ |
+| GitHub Samples | https://github.com/awslabs/amazon-bedrock-agentcore-samples |
+| LangGraph Docs | https://langchain-ai.github.io/langgraph/ |
+| CloudFormation | https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-bedrockagentcore-runtime.html |

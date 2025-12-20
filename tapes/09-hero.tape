@@ -1,95 +1,46 @@
-# AgentCore Hero Demo
-# Quick showcase of all capabilities
+# AgentCore Hero Demo - LangGraph in the Cloud
+# Shows: code -> configure -> deploy -> invoke
 
 Output recordings/09-hero.gif
 Output recordings/09-hero.mp4
 
 Source tapes/_settings.tape
 
-Set TypingSpeed 25ms
-Set PlaybackSpeed 1.2
+Set TypingSpeed 30ms
 
-# Big title
-Type "echo ''"
+# Show the LangGraph agent code
+Type "head -60 examples/langgraph-web-search/agent.py"
 Enter
-Type "echo '  ╔═══════════════════════════════════════════════════════╗'"
-Enter
-Type "echo '  ║     AWS Bedrock AgentCore + LangGraph                 ║'"
-Enter
-Type "echo '  ║     Production-Grade AI Agent Infrastructure         ║'"
-Enter
-Type "echo '  ╚═══════════════════════════════════════════════════════╝'"
-Enter
-Sleep 1.5s
+Sleep 3s
 
-# Show the primitives
-Type "echo ''"
-Enter
-Type "echo '  🧠 Memory      - Cross-session conversation persistence'"
+# Navigate and configure
+Type "cd examples/langgraph-web-search"
 Enter
 Sleep 300ms
-Type "echo '  🌐 Gateway     - Unified MCP tool access'"
-Enter
-Sleep 300ms
-Type "echo '  🔍 Browser     - Cloud browser automation'"
-Enter
-Sleep 300ms
-Type "echo '  💻 Code        - Sandboxed code execution'"
-Enter
-Sleep 300ms
-Type "echo '  🛡️ Guardrails  - Production safety controls'"
-Enter
-Sleep 300ms
-Type "echo '  📜 Policy      - Cedar authorization rules'"
-Enter
-Sleep 300ms
-Type "echo '  🚀 Runtime     - Serverless deployment'"
-Enter
-Sleep 1s
 
-# Show examples
-Type "echo ''"
-Enter
-Type "echo '  📁 Complete Examples:'"
+# Show the 3-step deployment
+Type "# Step 1: Configure"
 Enter
 Sleep 500ms
-
-Type "ls examples/"
-Enter
-Sleep 1.5s
-
-# Quick code preview
-Type "echo ''"
-Enter
-Type "echo '  🤖 Sample: Deep Research Agent'"
-Enter
-Sleep 500ms
-
-Type "head -30 examples/deep-research-agent/agent.py | tail -15"
+Type "agentcore configure -e agent.py --region us-east-1 --name web_search_agent"
 Enter
 Sleep 2s
 
-# Call to action
-Type "echo ''"
+Type "# Step 2: Deploy"
 Enter
-Type "echo '  ┌─────────────────────────────────────────────────────┐'"
+Sleep 500ms
+Type "agentcore launch"
 Enter
-Type "echo '  │  Get started:                                       │'"
-Enter
-Type "echo '  │    git clone https://github.com/Agentic-Insights/   │'"
-Enter
-Type "echo '  │               aws-skills-cc.git                     │'"
-Enter
-Type "echo '  │    cd examples/<demo> && uv sync                    │'"
-Enter
-Type "echo '  │    uv run python *.py                               │'"
-Enter
-Type "echo '  └─────────────────────────────────────────────────────┘'"
-Enter
-Sleep 2s
+Sleep 3s
 
-Type "echo ''"
+Type "# Step 3: Invoke"
 Enter
-Type "echo '  🌟 Learn more at agenticinsights.com'"
+Sleep 500ms
+Type `agentcore invoke '{"prompt": "Search for AWS re:Invent 2024 announcements"}'`
+Enter
+Sleep 3s
+
+# Cleanup command
+Type "# Cleanup: agentcore destroy"
 Enter
 Sleep 2s

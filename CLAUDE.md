@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Repository Structure
 
@@ -35,3 +35,10 @@ uv run python agent.py
 - `.claude-plugin/plugin.json` - Plugin manifest
 - `.claude-plugin/marketplace.json` - Marketplace definition
 - `skills/aws-agentcore-langgraph/SKILL.md` - Main skill entry point
+
+## Releases
+
+Releases are automated via release-please. Use [Conventional Commits](https://www.conventionalcommits.org/):
+- `fix:` for bug fixes (patch version bump)
+- `feat:` for new features (minor version bump)
+- `feat!:` or `BREAKING CHANGE:` for breaking changes (major version bump)

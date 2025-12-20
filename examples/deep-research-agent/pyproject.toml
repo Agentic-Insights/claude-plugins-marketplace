@@ -1,0 +1,31 @@
+[project]
+name = "deep-research-agent"
+version = "0.1.0"
+description = "Production-grade research agent showcasing all AgentCore primitives"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "boto3>=1.35.0",
+    "langgraph>=0.2.0",
+    "langchain>=0.3.0",
+    "langchain-aws>=0.2.0",
+    "langchain-community>=0.3.0",
+    "bedrock-agentcore",
+    "python-dotenv>=1.0.0",
+    "ddgs>=6.0.0",
+]
+
+[project.optional-dependencies]
+browser = [
+    "playwright>=1.40.0",
+]
+deploy = [
+    "bedrock-agentcore-starter-toolkit",
+]
+all = [
+    "deep-research-agent[browser,deploy]",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,8 @@
+# Environment
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# AgentCore config
+.bedrock_agentcore.yaml

@@ -1,0 +1,43 @@
+# {{KB_NAME}}
+
+Personal knowledge base using the PARA method.
+
+## Purpose
+
+This knowledge base serves as:
+- [Add your primary purposes]
+- [e.g., Project tracking and notes]
+- [e.g., Career development materials]
+- [e.g., Technical reference library]
+
+## For AI Assistants
+
+**Start here**: See `AGENTS.md` for navigation index and quick lookups.
+
+## Structure (PARA Method)
+
+### projects/
+**Time-bound goals with deadlines**
+- `active/` - Current projects
+- `stories/` - Project narratives for portfolios/applications
+
+### areas/
+**Ongoing responsibilities**
+- [Add your main areas]
+
+### resources/
+**Reference material and standards**
+- [Add your main resource categories]
+
+### archives/
+**Completed or inactive work**
+
+## Key Principles
+
+- **PARA organization**: Action-oriented containers for efficient navigation
+- **Markdown-first**: Plain markdown for longevity and AI compatibility
+- [Add your specific principles]
+
+## Integration
+
+Clone this repo and reference AGENTS.md in your AI assistant configuration.

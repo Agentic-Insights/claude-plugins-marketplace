@@ -1,0 +1,28 @@
+# AI Agent Navigation Index
+
+**Purpose**: PARA-based PKM system for {{KB_NAME}}.
+
+## Quick Lookup Paths
+
+**Active projects**: `projects/active/`
+**Project stories**: `projects/stories/` (narratives + fragments)
+**Ongoing areas**: `areas/`
+**Reference material**: `resources/`
+**Archived work**: `archives/`
+
+## Current Projects
+
+[Add your active projects here]
+
+## PARA Structure
+
+```
+projects/     = Time-bound goals with deadlines
+areas/        = Ongoing responsibilities
+resources/    = Reference material
+archives/     = Completed/inactive work
+```
+
+## Navigation Tips
+
+Use grep to find specific topics. Use glob for file patterns.

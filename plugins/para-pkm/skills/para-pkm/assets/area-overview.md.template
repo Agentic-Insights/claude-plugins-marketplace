@@ -1,0 +1,21 @@
+# {{AREA_NAME}}
+
+**Responsibility**: {{RESPONSIBILITY_DESCRIPTION}}
+**Standard to maintain**: {{STANDARD}}
+
+## Overview
+[What this area encompasses and why it's important]
+
+## Sub-areas
+[If this area has nested structure, describe it]
+
+## Current State
+[Current status, recent updates, or focus]
+
+## Resources
+- Related projects: `../../projects/active/`
+- Related resources: `../../resources/`
+- Documentation: [Add links]
+
+## Review Schedule
+[How often to review this area: weekly, monthly, quarterly]

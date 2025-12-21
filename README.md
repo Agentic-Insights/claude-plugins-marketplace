@@ -4,7 +4,7 @@
 
 A curated collection of production-ready plugins for building and deploying AI systems, developed through real-world consulting engagements.
 
-## Installation
+## Claude Code Installation
 
 ```bash
 /plugin marketplace add Agentic-Insights/claude-plugins-marketplace
@@ -16,6 +16,7 @@ A curated collection of production-ready plugins for building and deploying AI s
 
 Build skills with the **[Agent Skills](https://agentskills.io)** open standard - create, validate, and publish portable skills for AI agents across Claude Code, Cursor, GitHub Copilot, and more.
 
+**Skill Installation (Claude Code):**
 ```bash
 /plugin install build-agent-skills@agentic-insights
 ```
@@ -40,6 +41,7 @@ Build skills with the **[Agent Skills](https://agentskills.io)** open standard -
 
 Deploy LangGraph 1.0 agents on AWS Bedrock AgentCore with production-ready infrastructure.
 
+**Skill Installation (Claude Code):**
 ```bash
 /plugin install aws-agentcore-langgraph@agentic-insights
 ```

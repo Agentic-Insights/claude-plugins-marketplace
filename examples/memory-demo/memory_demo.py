@@ -76,10 +76,20 @@ def create_memory_if_needed() -> str:
     memory_id = response['memory']['id']
     print(f"✅ Created memory: {memory_id}")
     print(f"   Set BEDROCK_AGENTCORE_MEMORY_ID={memory_id} to reuse")
+    
+    # Auto-save to .env for convenience
+    try:
+        env_path = ".env"
+        if os.path.exists(env_path):
+            with open(env_path, "a") as f:
+                f.write(f"\nBEDROCK_AGENTCORE_MEMORY_ID={memory_id}\n")
+            print("   (Saved to .env for future runs)")
+    except Exception:
+        pass
 
     # Wait for memory to be active
     print("⏳ Waiting for memory to become active...")
-    for _ in range(30):
+    for _ in range(90):  # Wait up to 3 minutes
         status = client.get_memory(memoryId=memory_id)
         if status['memory']['status'] == 'ACTIVE':
             print("✅ Memory is active!")
@@ -194,7 +204,7 @@ def demonstrate_memory():
     print(f"  3. Set: BEDROCK_AGENTCORE_MEMORY_ID={memory_id}")
 
 
-def run_interactive_agent():
+def run_interactive_agent(suppress_recall=False):
     """Run an interactive agent with memory-enabled conversation."""
     from bedrock_agentcore.memory import MemoryClient
 
@@ -207,36 +217,63 @@ def run_interactive_agent():
         model_provider="bedrock_converse",
     )
 
-    user_id = "interactive-user"
+    # Use configurable USER_ID for demos
+    user_id = os.getenv("USER_ID", "interactive-user")
     session_id = f"interactive-{datetime.now().strftime('%Y%m%d%H%M%S')}"
 
     print(f"\n{'='*60}")
     print("🤖 Interactive Agent with Memory")
     print(f"{'='*60}")
+    print(f"User ID: {user_id}")
     print(f"Memory ID: {memory_id}")
     print(f"Session: {session_id}")
     print("Type 'quit' to exit, 'history' to see memory\n")
 
-    # Load existing conversation from memory
+    # Initialize messages list
     messages = []
+
+    # 1. Retrieve Long-Term Memory (Cross-Session)
+    context_str = ""
+    if not suppress_recall:
+        print("🧠 Checking Long-Term Memory...")
+        try:
+            ltm_memories = memory_client.retrieve_memories(
+                memory_id=memory_id,
+                namespace=f"/demo/{user_id}/memories",
+                query="What do I know about this user?"
+            )
+            if ltm_memories:
+                extracted_facts = []
+                for mem in ltm_memories:
+                    content = mem.get('content', {})
+                    text = content.get('text', str(content)) if isinstance(content, dict) else str(content)
+                    extracted_facts.append(text)
+                
+                context_str = "\n".join(extracted_facts)
+                print(f"  ✨ I remember {len(extracted_facts)} things about you.")
+                messages.append({"role": "system", "content": f"Here is what you know about the user from previous interactions:\n{context_str}"})
+            else:
+                print("  (No long-term memories found yet)")
+        except Exception as e:
+            print(f"  (Could not check LTM: {e})")
+        print()
+    else:
+        print("🧠 (Memory Recall Suppressed for Demo)\n")
+
+    # 2. Initial Greeting
+    greeting_prompt = "Hello! How can I help you today?"
+    if context_str:
+        greeting_prompt = "Hello again! I remember some things we discussed before. How can I help you today?"
+    
+    # Get a personalized greeting from the LLM based on context
     try:
-        events = memory_client.list_events(
-            memory_id=memory_id,
-            actor_id=user_id,
-            session_id=session_id
-        )
-        for event in events:
-            for msg in event.get("payload", []):
-                if "conversational" in msg:
-                    conv = msg["conversational"]
-                    role = conv.get("role", "").lower()
-                    content = conv.get("content", {}).get("text", "")
-                    if role in ("user", "assistant"):
-                        messages.append({"role": role, "content": content})
-        if messages:
-            print(f"📚 Loaded {len(messages)} messages from previous conversation\n")
-    except Exception as e:
-        print(f"Note: Could not load history ({e})\n")
+        temp_messages = messages + [{"role": "user", "content": "Give me a very brief greeting (1 sentence) acknowledging that you remember me if you have context, or just saying hello if you don't."}]
+        greeting_resp = llm.invoke(temp_messages)
+        print(f"🤖 Assistant: {greeting_resp.content}\n")
+        messages.append({"role": "assistant", "content": greeting_resp.content})
+    except Exception:
+        print(f"🤖 Assistant: {greeting_prompt}\n")
+        messages.append({"role": "assistant", "content": greeting_prompt})
 
     while True:
         try:
@@ -289,6 +326,7 @@ def run_interactive_agent():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--interactive":
-        run_interactive_agent()
+        suppress = "--no-recall" in sys.argv
+        run_interactive_agent(suppress_recall=suppress)
     else:
         demonstrate_memory()

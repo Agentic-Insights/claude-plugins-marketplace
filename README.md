@@ -8,6 +8,8 @@ A curated collection of production-ready plugins for building and deploying AI s
 
 ## Claude Code Installation
 
+![Plugin Installation Demo](./recordings/plugin-installation.gif)
+
 ```bash
 /plugin marketplace add Agentic-Insights/claude-plugins-marketplace
 ```

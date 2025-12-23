@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Professional Claude Code plugins for AI engineering excellence",
-    "version": "2.1.0"
+    "version": "2.3.0"
   },
   "plugins": [
     {
@@ -31,7 +31,7 @@
       "name": "aws-agentcore-langgraph",
       "source": "./plugins/aws-agentcore-langgraph",
       "description": "Deploy LangGraph 1.0 agents on AWS Bedrock AgentCore with memory, gateway, and runtime integration",
-      "version": "2.1.0",
+      "version": "1.0.2",
       "author": {
         "name": "agentic-insights"
       },

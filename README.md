@@ -156,11 +156,11 @@ These plugins encode repeatable patterns and solutions from real consulting enga
 
 ## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on:
+We welcome contributions! Guidelines:
 - Creating new plugins
 - Improving existing plugins
 - Documentation and examples
-- Bug reports and feature requests
+- Bug reports and feature requests via [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
 
 ## License
 

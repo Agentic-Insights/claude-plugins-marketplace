@@ -1,6 +1,6 @@
 # AgentCore Guardrails Demo
 
-Demonstrates Amazon Bedrock Guardrails for production-ready AI agent safety.
+Demonstrates Amazon Bedrock Guardrails for AI agent safety.
 
 ## What This Shows
 

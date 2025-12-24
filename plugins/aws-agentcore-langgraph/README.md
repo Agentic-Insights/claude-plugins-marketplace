@@ -1,6 +1,6 @@
 # AWS AgentCore + LangGraph
 
-**Production-ready infrastructure for your LangGraph agents on AWS.**
+**Deploy your LangGraph agents on AWS with managed infrastructure.**
 
 This repository demonstrates how to bridge the flexible orchestration of **LangGraph** with the managed infrastructure of **AWS Bedrock AgentCore**. It provides the tooling to wrap, deploy, and manage stateful agents with persistent memory and secure tool access.
 
@@ -8,7 +8,7 @@ This repository demonstrates how to bridge the flexible orchestration of **LangG
 
 Building a local agent demo is easy. Deploying it as a secure, scalable, and stateful service is hard. This project solves that by providing:
 
-*   **Managed Runtime**: Wraps your `StateGraph` in a production-ready HTTP service (`BedrockAgentCoreApp`) that handles invocations and health checks.
+*   **Managed Runtime**: Wraps your `StateGraph` in an HTTP service (`BedrockAgentCoreApp`) that handles invocations and health checks.
 *   **Persistent Memory**: Adds "Long-Term Memory" to your agents via `MemoryClient`, allowing them to remember user preferences and facts across different sessions.
 *   **Tool Gateway**: Connects agents to external APIs and Lambda functions using the AgentCore Gateway (supports MCP).
 *   **CLI Deployment**: A streamlined "Infrastructure-as-Code" workflow to `configure`, `launch`, and `manage` your agents on AWS.
@@ -119,7 +119,7 @@ Streamlined CLI workflow (`configure`, `launch`, `invoke`, `destroy`) to manage 
 ## Architecture
 
 ### The Runtime Exoskeleton
-`BedrockAgentCoreApp` acts as the production adapter for your `StateGraph`.
+`BedrockAgentCoreApp` acts as the runtime adapter for your `StateGraph`.
 
 ```mermaid
 graph LR

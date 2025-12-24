@@ -1,14 +1,12 @@
 # Agentic Insights Plugin Marketplace
 
-**Professional Claude Code plugins for AI engineering excellence.**
+**Claude Code plugins for AI engineering.**
 
-A curated collection of production-ready plugins for building and deploying AI systems, developed through real-world consulting engagements.
-
-![AWS AgentCore + LangGraph Demo](./plugins/aws-agentcore-langgraph/recordings/live-memory.gif)
-
-## Claude Code Installation
+Plugins for building and deploying AI agents, drawn from consulting engagements.
 
 ![Plugin Installation Demo](./recordings/plugin-installation.gif)
+
+## Claude Code Installation
 
 ```bash
 /plugin marketplace add Agentic-Insights/claude-plugins-marketplace
@@ -18,7 +16,7 @@ A curated collection of production-ready plugins for building and deploying AI s
 
 ### [aws-agentcore-langgraph](./plugins/aws-agentcore-langgraph/)
 
-Deploy LangGraph 1.0 agents on AWS Bedrock AgentCore with production-ready infrastructure.
+Deploy LangGraph 1.0 agents on AWS Bedrock AgentCore.
 
 **Skill Installation (Claude Code):**
 ```bash
@@ -26,26 +24,26 @@ Deploy LangGraph 1.0 agents on AWS Bedrock AgentCore with production-ready infra
 ```
 
 <details>
-<summary><strong>What's included</strong></summary>
+<summary><strong>Includes</strong></summary>
 
 **🔌 Skill:**
-- `aws-agentcore-langgraph` - Deploy LangGraph agents with AgentCore runtime, memory, and Gateway integration
+- `aws-agentcore-langgraph` - Deploy LangGraph agents with AgentCore runtime, memory, and Gateway
 
-**⚡ CLI Commands:**
-- `agentcore configure` - Configure agent deployment
-- `agentcore launch` - Deploy agent to AWS
-- `agentcore invoke` - Test agent invocation
-- `agentcore destroy` - Clean up resources
+**⚡ CLI:**
+- `agentcore configure` - Configure deployment
+- `agentcore launch` - Deploy to AWS
+- `agentcore invoke` - Test invocation
+- `agentcore destroy` - Clean up
 
 </details>
 
-[View Documentation →](./plugins/aws-agentcore-langgraph/)
+[Documentation →](./plugins/aws-agentcore-langgraph/)
 
 ---
 
 ### [build-agent-skills](./plugins/build-agent-skills/) 🆕
 
-Build skills with the **[Agent Skills](https://agentskills.io)** open standard - create, validate, and publish portable skills for AI agents across Claude Code, Cursor, GitHub Copilot, and more.
+Build portable skills with the **[Agent Skills](https://agentskills.io)** open standard. Works with Claude Code, Cursor, and GitHub Copilot.
 
 **Skill Installation (Claude Code):**
 ```bash
@@ -53,24 +51,24 @@ Build skills with the **[Agent Skills](https://agentskills.io)** open standard -
 ```
 
 <details>
-<summary><strong>What's included</strong></summary>
+<summary><strong>Includes</strong></summary>
 
 **🔌 Skill:**
-- `working-with-agent-skills` - Create, validate, and publish Agent Skills following the official open standard
+- `working-with-agent-skills` - Create, validate, and publish Agent Skills
 
-**⚡ CLI Commands:**
-- `skills-ref validate` - Validate skill structure and metadata
+**⚡ CLI:**
+- `skills-ref validate` - Validate structure and metadata
 - `skills-ref inspect` - Inspect skill details
 
 </details>
 
-[View Documentation →](./plugins/build-agent-skills/)
+[Documentation →](./plugins/build-agent-skills/)
 
 ---
 
 ### [baml](./plugins/baml/) 🆕
 
-Production-ready BAML plugin for type-safe LLM extraction - generates BAML code from requirements, designs schemas, runs tests, debugs issues. Includes LangGraph integration patterns and MCP-powered code generation.
+Type-safe LLM extraction with BAML. Generate code from requirements, design schemas, run tests, debug issues. Includes LangGraph integration and MCP-powered codegen.
 
 **Skill Installation (Claude Code):**
 ```bash
@@ -78,31 +76,31 @@ Production-ready BAML plugin for type-safe LLM extraction - generates BAML code 
 ```
 
 <details>
-<summary><strong>What's included</strong></summary>
+<summary><strong>Includes</strong></summary>
 
 **🔌 Skills:**
-- `baml-codegen` - MCP-powered code generation from natural language requirements
-- `baml-implementation` - Core BAML implementation patterns and best practices
-- `baml-philosophy` - Design principles and architectural guidance
+- `baml-codegen` - Generate code from natural language via MCP
+- `baml-implementation` - Core patterns and best practices
+- `baml-philosophy` - Design principles and architecture
 
 **🤖 Agents:**
-- `baml-architect` - Schema design and architecture planning
-- `baml-debugger` - Debug BAML validation errors
-- `baml-tester` - Test generation and validation
+- `baml-architect` - Schema design
+- `baml-debugger` - Debug validation errors
+- `baml-tester` - Test generation
 
 **⚡ Commands:**
-- `/baml-init` - Initialize new BAML projects
-- `/baml-schema` - Schema design assistance
-- `/baml-test` - Run and validate tests
-- `/baml-diagnose` - Troubleshoot common issues
+- `/baml-init` - Initialize projects
+- `/baml-schema` - Design schemas
+- `/baml-test` - Run tests
+- `/baml-diagnose` - Troubleshoot issues
 
-**📋 Requirements:**
-- MCP server: `baml_Docs` (required)
+**📋 Requires:**
+- MCP server: `baml_Docs`
 - MCP server: `baml_Examples` (optional)
 
 </details>
 
-[View Documentation →](./plugins/baml/)
+[Documentation →](./plugins/baml/)
 
 **Credits:** Original implementation by [Fry](https://github.com/FryrAI)
 
@@ -110,7 +108,7 @@ Production-ready BAML plugin for type-safe LLM extraction - generates BAML code 
 
 ### [vhs-recorder](./plugins/vhs-recorder/) 🆕
 
-Professional terminal recording with Charm's VHS - comprehensive guidance for creating polished CLI demonstrations, tutorials, and documentation videos.
+Record terminal sessions with Charm's VHS. Create CLI demos, tutorials, and documentation videos.
 
 **Skill Installation (Claude Code):**
 ```bash
@@ -118,62 +116,64 @@ Professional terminal recording with Charm's VHS - comprehensive guidance for cr
 ```
 
 <details>
-<summary><strong>What's included</strong></summary>
+<summary><strong>Includes</strong></summary>
 
 **🔌 Skill:**
-- `vhs-recorder` - Complete workflow for creating VHS tape files with proper structure, timing, and best practices
+- `vhs-recorder` - Create VHS tape files with proper structure and timing
 
 **📚 Examples:**
-- `basic-demo.tape` - Simple introduction to VHS
-- `cli-tool-demo.tape` - CLI tool demonstration with hidden setup/cleanup
-- `git-workflow.tape` - Multi-stage git workflow recording
-- `tutorial-with-errors.tape` - Realistic tutorial with corrections
+- `basic-demo.tape` - VHS introduction
+- `cli-tool-demo.tape` - CLI demo with hidden setup/cleanup
+- `git-workflow.tape` - Multi-stage git workflow
+- `tutorial-with-errors.tape` - Tutorial with corrections
 
 </details>
 
-[View Documentation →](./plugins/vhs-recorder/)
+[Documentation →](./plugins/vhs-recorder/)
 
-## Plugin Categories
+## Categories
 
-- **Agent Development** - Agent Skills standard, skill creation and validation
-- **Infrastructure & Deployment** - AWS Bedrock, cloud infrastructure, DevOps patterns
+- **Agent Development** - Agent Skills standard, skill creation, validation
+- **Infrastructure** - AWS Bedrock, cloud, DevOps
 - **AI Engineering** - LangGraph, RAG, agentic workflows
-- **Developer Tools** - Terminal recording, CLI demonstrations, documentation
-- **Consulting Workflows** - Fractional CTO tools and patterns (coming soon)
+- **Developer Tools** - Terminal recording, CLI demos, documentation
+- **Consulting** - Fractional CTO tools (coming soon)
 
 ## About Agentic Insights
 
-Professional AI engineering consulting for startups and scale-ups. We specialize in:
+AI engineering consulting for startups and scale-ups:
 
-- **Fractional CTO Services** - Strategic technical leadership and architecture
-- **AI Application Development** - LLMs, RAG systems, agentic workflows
-- **Production Engineering** - Building reliable systems with non-deterministic AI
-- **MLOps & Infrastructure** - Kubernetes-native AI deployments
+- **Fractional CTO** - Technical leadership and architecture
+- **AI Applications** - LLMs, RAG, agentic workflows
+- **Production Engineering** - Reliable systems with non-deterministic AI
+- **MLOps** - Kubernetes-native AI deployments
 
-These plugins encode repeatable patterns and solutions from real consulting engagements.
+These plugins encode patterns from consulting engagements.
 
-**Learn more:** [agenticinsights.com](https://agenticinsights.com)
+[agenticinsights.com](https://agenticinsights.com)
 
 ## Contributing
 
-We welcome contributions! Guidelines:
-- Creating new plugins
-- Improving existing plugins
+Contributions welcome:
+- New plugins
+- Plugin improvements
 - Documentation and examples
-- Bug reports and feature requests via [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
+- Bug reports via [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
 
 ## License
 
-Individual plugins may have different licenses. See each plugin's directory for details.
+Plugins have individual licenses. See each directory for details.
 
-- Marketplace infrastructure: MIT
-- build-agent-skills: Apache-2.0
-- aws-agentcore-langgraph: Apache-2.0
-- baml: Apache-2.0
-- para-pkm: MIT
-- vhs-recorder: MIT
+| Plugin | License |
+|--------|---------|
+| Marketplace | MIT |
+| aws-agentcore-langgraph | Apache-2.0 |
+| build-agent-skills | Apache-2.0 |
+| baml | Apache-2.0 |
+| para-pkm | MIT |
+| vhs-recorder | MIT |
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
-- **Consulting**: [Book a consultation](https://calendar.app.google/mR44LvVuK46PT5nK9) or visit [agenticinsights.com](https://agenticinsights.com)
+- [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
+- [Book a consultation](https://calendar.app.google/mR44LvVuK46PT5nK9)

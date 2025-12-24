@@ -172,7 +172,7 @@ ALTER TABLE users DROP COLUMN last_name;
 
 ## Example 2: AWS Lambda Deployment Skill
 
-A production-ready skill for deploying serverless functions.
+A skill for deploying serverless functions.
 
 ```yaml
 ---

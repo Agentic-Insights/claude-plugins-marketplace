@@ -106,7 +106,7 @@ Every skill must include YAML frontmatter at the top of its `SKILL.md` file, del
 ```yaml
 ---
 name: aws-bedrock-deployment
-description: Deploy LangGraph agents to AWS Bedrock AgentCore with memory, tools, and observability. Use when building production-ready AI agents on AWS with Claude models.
+description: Deploy LangGraph agents to AWS Bedrock AgentCore with memory, tools, and observability. Use when building AI agents on AWS with Claude models.
 license: Apache-2.0
 compatibility: Requires AWS CLI 2.x, Python 3.10+, valid AWS credentials with Bedrock access
 metadata:

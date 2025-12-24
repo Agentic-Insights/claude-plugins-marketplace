@@ -83,7 +83,7 @@ skills-ref read-properties ./my-skill
 ```json
 {
   "name": "aws-bedrock-deployment",
-  "description": "Deploy LangGraph agents to AWS Bedrock AgentCore with memory, tools, and observability. Use when building production-ready AI agents on AWS with Claude models.",
+  "description": "Deploy LangGraph agents to AWS Bedrock AgentCore with memory, tools, and observability. Use when building AI agents on AWS with Claude models.",
   "license": "Apache-2.0",
   "compatibility": "Requires AWS CLI 2.x, Python 3.10+, valid AWS credentials with Bedrock access",
   "metadata": {
@@ -119,7 +119,7 @@ skills-ref to-prompt ./my-skill
 aws-bedrock-deployment
 </name>
 <description>
-Deploy LangGraph agents to AWS Bedrock AgentCore with memory, tools, and observability. Use when building production-ready AI agents on AWS with Claude models.
+Deploy LangGraph agents to AWS Bedrock AgentCore with memory, tools, and observability. Use when building AI agents on AWS with Claude models.
 </description>
 <location>
 /path/to/my-skill/SKILL.md

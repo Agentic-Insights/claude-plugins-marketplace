@@ -1,6 +1,6 @@
 # Agent Skills Best Practices
 
-This guide covers advanced patterns, optimization techniques, and cross-platform compatibility strategies for creating production-ready Agent Skills.
+This guide covers advanced patterns, optimization techniques, and cross-platform compatibility strategies for creating robust Agent Skills.
 
 ## Writing Effective Skill Instructions
 

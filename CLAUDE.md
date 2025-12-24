@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with the Agentic Insight
 
 ## Project Overview
 
-A professional Claude Code plugin marketplace for Agentic Insights consulting. This repository contains production-ready plugins that serve three purposes:
+A professional Claude Code plugin marketplace for Agentic Insights consulting. This repository contains plugins that serve three purposes:
 1. **Lead generation** - Showcase AI engineering expertise to potential clients
 2. **Client enablement** - Tools and patterns for post-engagement momentum
 3. **Product-ized solutions** - Repeatable consulting patterns encoded as plugins
@@ -106,7 +106,7 @@ git commit -m "docs: update marketplace installation instructions"
 
 1. **Alpha** - Private/client-specific, not in marketplace
 2. **Beta** - In marketplace, marked as beta in description
-3. **Stable** - Production-ready, documented, tested
+3. **Stable** - Documented, tested, reliable
 4. **Deprecated** - Marked but still available
 
 ## Available Tools

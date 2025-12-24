@@ -49,7 +49,7 @@
     {
       "name": "baml",
       "source": "./plugins/baml",
-      "description": "Production-ready BAML plugin for type-safe LLM extraction - generates BAML code from requirements, designs schemas, runs tests, debugs issues. Includes LangGraph integration patterns, MCP-powered code generation, 3 skills, 3 agents, 4 commands.",
+      "description": "BAML plugin for type-safe LLM extraction - generates BAML code from requirements, designs schemas, runs tests, debugs issues. Includes LangGraph integration patterns, MCP-powered code generation, 3 skills, 3 agents, 4 commands.",
       "version": "2.0.0",
       "author": {
         "name": "agentic-insights"

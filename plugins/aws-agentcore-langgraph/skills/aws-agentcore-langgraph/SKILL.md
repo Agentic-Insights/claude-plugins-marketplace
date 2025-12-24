@@ -9,6 +9,10 @@ description: Deploy production LangGraph agents on AWS Bedrock AgentCore. Use fo
 
 This skill covers building production-grade multi-agent applications using LangGraph orchestration with AWS Bedrock AgentCore managed runtime. It handles the full lifecycle: development, deployment, memory management, tool integration, and observability for complex agent ecosystems across any domain.
 
+- 'uvx tool install install bedrock-agentcore-starter-toolkit' will install ['agentcore' cli](references/agentcore-cli.md)
+- 'agentcore dev' runs a dev server
+- https://github.com/aws/bedrock-agentcore-starter-toolkit is the repo
+
 ### Core Patterns Covered
 
 **Multi-Agent Orchestration**: Orchestrator agents coordinate work across specialist agents, each with focused responsibilities.

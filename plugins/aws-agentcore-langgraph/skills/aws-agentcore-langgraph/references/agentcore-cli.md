@@ -18,6 +18,17 @@ Quick reference for AgentCore primitives. Use `scripts/` utilities for common di
 
 ## agentcore CLI
 
+### Configuration
+```bash
+agentcore configure                 # Interactive setup (region, auth, defaults)
+```
+
+**Important:** This creates `.bedrock_agentcore.yaml` in your project directory containing local configuration. **Add this file to `.gitignore`** - it should not be committed to version control.
+
+```bash
+echo ".bedrock_agentcore.yaml" >> .gitignore
+```
+
 ### Runtime
 ```bash
 agentcore status                    # Current agent status

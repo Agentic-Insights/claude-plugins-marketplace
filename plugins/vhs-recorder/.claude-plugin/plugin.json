@@ -1,6 +1,6 @@
 {
   "name": "vhs-recorder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Professional terminal recording with Charm's VHS - comprehensive guidance for creating polished CLI demonstrations, tutorials, and documentation videos",
   "keywords": [
     "vhs",

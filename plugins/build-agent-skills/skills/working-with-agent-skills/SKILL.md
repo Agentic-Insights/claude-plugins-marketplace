@@ -110,17 +110,30 @@ skill-name/
 └── SKILL.md          # Frontmatter + instructions
 ```
 
-### Recommended
+**Critical**: The directory name MUST match the `name` field in SKILL.md frontmatter.
+
+### Optional Subdirectories
+
+Only three subdirectories are allowed per the specification:
 
 ```
 skill-name/
 ├── SKILL.md          # Primary instructions (<500 lines)
-├── scripts/          # Executable scripts
+├── scripts/          # Executable code (Python, Bash, JavaScript)
 ├── references/       # Supporting documentation (loaded on-demand)
-└── assets/           # Templates, diagrams, examples
+└── assets/           # Static resources (templates, images, data files)
 ```
 
-**Progressive disclosure**: Keep SKILL.md concise, move detailed content to `references/` and link as needed.
+| Directory | Purpose | Examples |
+|-----------|---------|----------|
+| `scripts/` | Executable code agents can run | `deploy.py`, `validate.sh`, `setup.js` |
+| `references/` | Additional docs loaded when needed | `api-reference.md`, `troubleshooting.md` |
+| `assets/` | Static resources and templates | `config-template.yaml`, `example.baml` |
+
+**Key rules**:
+- Keep file references **one level deep** from SKILL.md (avoid deeply nested structures)
+- No other subdirectories are allowed by the spec
+- Progressive disclosure: Keep SKILL.md concise, link to `references/` for details
 
 ## Frontmatter Schema
 
@@ -281,18 +294,61 @@ Skills work across multiple AI tools. Key points:
 - Test with at least 2 different agents
 - Follow the open standard for maximum compatibility
 
+## Claude Code Plugin Structure
+
+In Claude Code, skills live inside **plugins**. A plugin can contain multiple skills:
+
+```
+plugin-name/
+├── .claude-plugin/
+│   └── plugin.json        # Plugin metadata (name, version, description)
+├── README.md              # Human-readable overview
+├── LICENSE                # License file
+├── CHANGELOG.md           # Version history
+├── skills/
+│   └── skill-name/        # Each skill follows Agent Skills spec
+│       ├── SKILL.md
+│       ├── references/
+│       ├── assets/
+│       └── scripts/
+├── agents/                # Optional: subagent definitions
+├── commands/              # Optional: slash command definitions
+└── examples/              # Optional: runnable demo projects
+```
+
+**Key distinctions**:
+- **Plugin level**: `README.md`, `LICENSE`, `CHANGELOG.md`, `examples/` (full projects)
+- **Skill level**: `SKILL.md`, `references/`, `assets/`, `scripts/` (per Agent Skills spec)
+
+**Plugin examples/ vs Skill assets/**:
+- `plugin/examples/` — Full runnable demo projects (with pyproject.toml, etc.)
+- `skill/assets/` — Static resources for the skill (templates, sample files)
+
 ## Validation Reference
 
-### Quick Validation
+### skills-ref CLI
+
+The `skills-ref` tool validates skills against the Agent Skills specification:
 
 ```bash
-# Using uvx (no installation)
+# Install via uvx (ephemeral, no installation needed)
 uvx --from git+https://github.com/agentskills/agentskills#subdirectory=skills-ref \
   skills-ref validate path/to/skill
 
 # Create alias for convenience
 alias skills-ref='uvx --from git+https://github.com/agentskills/agentskills#subdirectory=skills-ref skills-ref'
+
+# Or install globally with uv
+uv tool install git+https://github.com/agentskills/agentskills#subdirectory=skills-ref
 ```
+
+### CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `skills-ref validate <path>` | Validate skill structure and frontmatter |
+| `skills-ref read-properties <path>` | Extract and display frontmatter metadata |
+| `skills-ref to-prompt <path>` | Generate agent-ready prompt format |
 
 ### Common Validation Errors
 
@@ -345,6 +401,19 @@ aws-lambda-deploy/
 
 For complete examples, see [examples.md](references/examples.md).
 
+## Common Mistakes
+
+Avoid these structural issues:
+
+| Mistake | Problem | Fix |
+|---------|---------|-----|
+| `references/` at plugin root | Should be inside skill | Move to `skills/skill-name/references/` |
+| `examples/` inside skill | Use `assets/` for static files | Rename to `assets/` or move to plugin level |
+| Nested subdirs in skill | Spec only allows 3 subdirs | Flatten to scripts/, references/, assets/ |
+| Directory name ≠ frontmatter name | Breaks discovery | Ensure `name:` matches parent directory |
+| `__pycache__/` committed | Runtime artifacts | Add to .gitignore |
+| Empty directories | Clutter | Remove or add content |
+
 ## Best Practices Summary
 
 - ✅ Keep SKILL.md under 500 lines
@@ -352,10 +421,12 @@ For complete examples, see [examples.md](references/examples.md).
 - ✅ Provide concrete examples with expected outputs
 - ✅ Handle common error cases
 - ✅ Use progressive disclosure (main skill + references)
-- ✅ Validate before publishing
+- ✅ Validate before publishing with `skills-ref validate`
 - ✅ Test with multiple AI agents
-- ✅ Include README and LICENSE
+- ✅ Include README and LICENSE at plugin level
 - ✅ Use semantic versioning
+- ✅ Directory name matches frontmatter `name:`
+- ✅ Only use scripts/, references/, assets/ subdirs
 
 For advanced patterns, see [best-practices.md](references/best-practices.md).
 

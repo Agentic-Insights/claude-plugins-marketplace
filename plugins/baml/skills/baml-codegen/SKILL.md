@@ -189,10 +189,20 @@ Always deliver:
 
 | Topic | File | Description |
 |-------|------|-------------|
-| **Philosophy** | [references/philosophy.md](references/philosophy.md) | BAML principles, golden rules, when to use |
-| **Patterns** | [references/patterns.md](references/patterns.md) | Pattern library by category with code examples |
-| **MCP Interface** | [references/mcp-interface.md](references/mcp-interface.md) | Query workflow, caching strategy, error handling |
-| **Examples** | [references/examples.md](references/examples.md) | Complete code generation examples with tests |
+| **Providers** | [references/providers.md](references/providers.md) | OpenAI, Anthropic, Google, Ollama, Azure, Bedrock config |
+| **Types & Schemas** | [references/types-and-schemas.md](references/types-and-schemas.md) | Full type system, classes, enums, unions, maps |
+| **Validation** | [references/validation.md](references/validation.md) | @assert, @check, block-level @@assert patterns |
+| **Advanced Patterns** | [references/advanced-patterns.md](references/advanced-patterns.md) | Streaming, TypeBuilder, ClientRegistry, unions |
+| **Python** | [references/languages-python.md](references/languages-python.md) | Python/Pydantic usage, async, streaming |
+| **TypeScript** | [references/languages-typescript.md](references/languages-typescript.md) | TypeScript, React/Next.js hooks |
+| **Go/Ruby** | [references/languages-other.md](references/languages-other.md) | Go and Ruby/Sorbet support |
+| **LangGraph** | [references/frameworks-langgraph.md](references/frameworks-langgraph.md) | LangGraph integration patterns |
+| **Image/Forms** | [references/usecase-image-forms.md](references/usecase-image-forms.md) | Multimodal extraction from images |
+| **Workflows** | [references/usecase-workflows.md](references/usecase-workflows.md) | Event and workflow modeling |
+| **Philosophy** | [references/philosophy.md](references/philosophy.md) | BAML principles, golden rules |
+| **Patterns** | [references/patterns.md](references/patterns.md) | Pattern library with code examples |
+| **MCP Interface** | [references/mcp-interface.md](references/mcp-interface.md) | Query workflow, caching, error handling |
+| **Examples** | [references/examples.md](references/examples.md) | Complete code generation examples |
 
 ## Error Handling
 

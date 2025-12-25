@@ -2,210 +2,116 @@
 
 **Claude Code plugins for AI engineering.**
 
-Plugins for building and deploying AI agents, drawn from consulting engagements and research projects.
-
 ![Plugin Installation Demo](./recordings/plugin-installation.gif)
 
-## Claude Code Installation
+## Quick Install
 
 ```bash
 /plugin marketplace add Agentic-Insights/claude-plugins-marketplace
 ```
 
-## Available Plugins
+## Plugins
 
-### [aws-agentcore-langgraph](./plugins/aws-agentcore-langgraph/)
+| Plugin | Description | Install |
+|--------|-------------|---------|
+| [aws-agentcore-langgraph](./plugins/aws-agentcore-langgraph/) | Deploy LangGraph agents on AWS Bedrock AgentCore | `/plugin install aws-agentcore-langgraph@agentic-insights` |
+| [baml](./plugins/baml/) | Type-safe LLM extraction with BAML codegen | `/plugin install baml@agentic-insights` |
+| [build-agent-skills](./plugins/build-agent-skills/) | Build skills with Agent Skills open standard | `/plugin install build-agent-skills@agentic-insights` |
+| [adversarial-coach](./plugins/adversarial-coach/) | Adversarial code review (Block g3 research) | `/plugin install adversarial-coach@agentic-insights` |
+| [vhs-recorder](./plugins/vhs-recorder/) | Record terminal demos with Charm VHS | `/plugin install vhs-recorder@agentic-insights` |
+| [para-pkm](./plugins/para-pkm/) | PARA knowledge management system | `/plugin install para-pkm@agentic-insights` |
+
+---
+
+## Plugin Details
+
+<details>
+<summary><strong>aws-agentcore-langgraph</strong></summary>
 
 Deploy LangGraph 1.0 agents on AWS Bedrock AgentCore.
 
-**Skill Installation (Claude Code):**
-```bash
-/plugin install aws-agentcore-langgraph@agentic-insights
-```
-
-<details>
-<summary><strong>Includes</strong></summary>
-
-**🔌 Skill:**
-- `aws-agentcore-langgraph` - Deploy LangGraph agents with AgentCore runtime, memory, and Gateway
-
-**⚡ CLI:**
-- `agentcore configure` - Configure deployment
-- `agentcore launch` - Deploy to AWS
-- `agentcore invoke` - Test invocation
-- `agentcore destroy` - Clean up
-
-</details>
+- **Skill:** `aws-agentcore-langgraph` - Runtime, memory, and Gateway integration
+- **CLI:** `agentcore configure|launch|invoke|destroy`
 
 [Documentation →](./plugins/aws-agentcore-langgraph/)
-
----
-
-### [build-agent-skills](./plugins/build-agent-skills/) 🆕
-
-Build portable skills with the **[Agent Skills](https://agentskills.io)** open standard. Works with Claude Code, Cursor, and GitHub Copilot.
-
-**Skill Installation (Claude Code):**
-```bash
-/plugin install build-agent-skills@agentic-insights
-```
+</details>
 
 <details>
-<summary><strong>Includes</strong></summary>
+<summary><strong>baml</strong></summary>
 
-**🔌 Skill:**
-- `working-with-agent-skills` - Create, validate, and publish Agent Skills
+Type-safe LLM extraction with BAML. MCP-powered codegen with LangGraph integration.
 
-**⚡ CLI:**
-- `skills-ref validate` - Validate structure and metadata
-- `skills-ref inspect` - Inspect skill details
+- **Skill:** `baml-codegen` - Generate code, schemas, tests from requirements
+- **Agents:** `baml-architect`, `baml-debugger`, `baml-tester`
+- **Commands:** `/baml-init`, `/baml-schema`, `/baml-test`, `/baml-diagnose`
+- **Requires:** MCP server `baml_Docs` (optional: `baml_Examples`)
 
+[Documentation →](./plugins/baml/) | Credits: [Fry](https://github.com/FryrAI)
 </details>
+
+<details>
+<summary><strong>build-agent-skills</strong></summary>
+
+Build portable skills with the [Agent Skills](https://agentskills.io) open standard.
+
+- **Skill:** `working-with-agent-skills` - Create, validate, publish skills
+- **CLI:** `skills-ref validate|inspect`
 
 [Documentation →](./plugins/build-agent-skills/)
-
----
-
-### [baml](./plugins/baml/) 🆕
-
-Type-safe LLM extraction with BAML. Generate code from requirements, design schemas, run tests, debug issues. Includes LangGraph integration and MCP-powered codegen.
-
-**Skill Installation (Claude Code):**
-```bash
-/plugin install baml@agentic-insights
-```
-
-<details>
-<summary><strong>Includes</strong></summary>
-
-**🔌 Skills:**
-- `baml-codegen` - Generate code from natural language via MCP
-- `baml-implementation` - Core patterns and best practices
-- `baml-philosophy` - Design principles and architecture
-
-**🤖 Agents:**
-- `baml-architect` - Schema design
-- `baml-debugger` - Debug validation errors
-- `baml-tester` - Test generation
-
-**⚡ Commands:**
-- `/baml-init` - Initialize projects
-- `/baml-schema` - Design schemas
-- `/baml-test` - Run tests
-- `/baml-diagnose` - Troubleshoot issues
-
-**📋 Requires:**
-- MCP server: `baml_Docs`
-- MCP server: `baml_Examples` (optional)
-
 </details>
 
-[Documentation →](./plugins/baml/)
-
-**Credits:** Original implementation by [Fry](https://github.com/FryrAI)
-
----
-
-### [vhs-recorder](./plugins/vhs-recorder/) 🆕
-
-Record terminal sessions with Charm's VHS. Create CLI demos, tutorials, and documentation videos.
-
-**Skill Installation (Claude Code):**
-```bash
-/plugin install vhs-recorder@agentic-insights
-```
-
 <details>
-<summary><strong>Includes</strong></summary>
+<summary><strong>adversarial-coach</strong></summary>
 
-**🔌 Skill:**
-- `vhs-recorder` - Create VHS tape files with proper structure and timing
+Adversarial code review based on Block's [g3 dialectical autocoding research](https://block.xyz/documents/adversarial-cooperation-in-code-synthesis.pdf).
 
-**📚 Examples:**
-- `basic-demo.tape` - VHS introduction
-- `cli-tool-demo.tape` - CLI demo with hidden setup/cleanup
-- `git-workflow.tape` - Multi-stage git workflow
-- `tutorial-with-errors.tape` - Tutorial with corrections
-
-</details>
-
-[Documentation →](./plugins/vhs-recorder/)
-
----
-
-### [adversarial-coach](./plugins/adversarial-coach/) 🆕
-
-Adversarial code review subagent based on Block's [g3 dialectical autocoding research](https://block.xyz/documents/adversarial-cooperation-in-code-synthesis.pdf). Validates implementations against requirements with fresh context objectivity.
-
-**Skill Installation (Claude Code):**
-```bash
-/plugin install adversarial-coach@agentic-insights
-```
-
-<details>
-<summary><strong>Includes</strong></summary>
-
-**⚡ Command:**
-- `/coach [requirements-file]` - Adversarial implementation review
-
-**🤖 Agent:**
-- `coach` - Independent code reviewer with fresh context
-
-**🎯 Key Features:**
-- Reviews from fresh context (no implementation bias)
-- Validates against stated requirements
-- Returns `IMPLEMENTATION_APPROVED` or specific actionable fixes
-- Catches missing auth, incomplete error handling, skipped requirements
-
-</details>
+- **Command:** `/coach [requirements-file]` - Independent implementation review
+- **Agent:** `coach` - Fresh context reviewer, catches missing auth/error handling
 
 [Documentation →](./plugins/adversarial-coach/)
+</details>
 
-## Categories
+<details>
+<summary><strong>vhs-recorder</strong></summary>
 
-- **Agent Development** - Agent Skills standard, skill creation, validation
-- **Infrastructure** - AWS Bedrock, cloud, DevOps
-- **AI Engineering** - LangGraph, RAG, agentic workflows
-- **Developer Tools** - Terminal recording, CLI demos, documentation
-- **Code Quality** - Adversarial review, validation, testing
-- **Consulting** - Fractional CTO tools (coming soon)
+Record terminal sessions with Charm's VHS for CLI demos and tutorials.
 
-## About Agentic Insights
+- **Skill:** `vhs-recorder` - Create VHS tape files with timing control
+- **Examples:** `basic-demo.tape`, `cli-tool-demo.tape`, `git-workflow.tape`
 
-AI engineering consulting for startups and scale-ups:
+[Documentation →](./plugins/vhs-recorder/)
+</details>
 
-- **Fractional CTO** - Technical leadership and architecture
-- **AI Applications** - LLMs, RAG, agentic workflows
-- **Production Engineering** - Reliable systems with non-deterministic AI
-- **MLOps** - Kubernetes-native AI deployments
+<details>
+<summary><strong>para-pkm</strong></summary>
 
-These plugins encode patterns from consulting engagements.
+PARA (Projects, Areas, Resources, Archives) knowledge management system.
 
-[agenticinsights.com](https://agenticinsights.com)
+- **Skill:** `para-pkm` - Organize knowledge bases with PARA methodology
+- **Scripts:** `init_para_kb.py`, `archive_project.py`, `validate_para.py`
 
-## Contributing
+[Documentation →](./plugins/para-pkm/)
+</details>
 
-Contributions welcome:
-- New plugins
-- Plugin improvements
-- Documentation and examples
-- Bug reports via [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
+---
+
+## About
+
+AI engineering consulting for startups and scale-ups. These plugins encode patterns from consulting engagements.
+
+[agenticinsights.com](https://agenticinsights.com) | [Book a consultation](https://calendar.app.google/mR44LvVuK46PT5nK9)
 
 ## License
 
-Plugins have individual licenses. See each directory for details.
-
 | Plugin | License |
 |--------|---------|
-| Marketplace | MIT |
 | aws-agentcore-langgraph | Apache-2.0 |
-| build-agent-skills | Apache-2.0 |
 | baml | Apache-2.0 |
-| para-pkm | MIT |
-| vhs-recorder | MIT |
+| build-agent-skills | Apache-2.0 |
 | adversarial-coach | Apache-2.0 |
+| vhs-recorder | MIT |
+| para-pkm | MIT |
 
-## Support
+## Contributing
 
-- [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
-- [Book a consultation](https://calendar.app.google/mR44LvVuK46PT5nK9)
+[GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues) for bugs and feature requests.

@@ -391,6 +391,52 @@ The script:
 - Reports pass/fail for each skill
 - Returns exit code matching the number of failures (0 = all pass)
 
+### Bump Plugin Versions Automatically
+
+Use the included `bump-changed-plugins.sh` script to automatically detect and bump versions for only the plugins with changes:
+
+```bash
+# Bump changed plugins by patch (default)
+bash scripts/bump-changed-plugins.sh
+
+# Bump changed plugins by minor or major
+bash scripts/bump-changed-plugins.sh minor
+bash scripts/bump-changed-plugins.sh major
+```
+
+**How it works:**
+1. Detects plugins with uncommitted changes via `git diff`
+2. Falls back to checking recent commits since last tag if no staged changes
+3. Calculates new version numbers based on current version + bump level
+4. Updates both plugin.json and marketplace.json automatically
+5. Reports which plugins were bumped and their new versions
+
+**Example output:**
+```
+🔍 Detecting changed plugins...
+
+Found 2 changed plugin(s):
+  • my-plugin
+  • another-plugin
+
+📦 my-plugin: 1.0.0 → 1.0.1
+📦 another-plugin: 2.1.3 → 2.1.4
+
+✅ Bumped 2 plugin(s) to patch
+
+Next: git add -A && git commit -m 'chore: bump versions for changed plugins'
+```
+
+**Use with justfile:**
+```bash
+# From repository root
+just bump          # patch (default)
+just bump minor    # minor
+just bump major    # major
+```
+
+This integrates seamlessly with semantic versioning and conventional commits.
+
 ## Examples
 
 ### Minimal Valid Skill

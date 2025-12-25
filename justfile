@@ -7,7 +7,13 @@ set shell := ["bash", "-cu"]
 default:
     @just --list
 
-# Bump a specific plugin version (patch/minor/major)
+# Bump versions for plugins with changes (smart detection)
+bump level="patch":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    bash plugins/build-agent-skills/skills/agentskills-io/scripts/bump-changed-plugins.sh "{{level}}"
+
+# Bump a specific plugin version manually (patch/minor/major)
 bump-plugin plugin level="patch":
     #!/usr/bin/env bash
     set -euo pipefail
@@ -24,8 +30,8 @@ bump-plugin plugin level="patch":
         exit 1
     fi
 
-    # Get current version from marketplace.json
-    CURRENT=$(jq -r --arg name "$PLUGIN" '.plugins[] | select(.name == $name) | .version // "0.0.0"' "$MARKETPLACE")
+    # Get current version
+    CURRENT=$(jq -r '.version // "0.0.0"' "$PLUGIN_JSON")
 
     # Parse version parts
     IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
@@ -40,81 +46,24 @@ bump-plugin plugin level="patch":
 
     echo "📦 Bumping $PLUGIN: $CURRENT → $NEW"
 
-    # Update marketplace.json
-    jq --arg name "$PLUGIN" --arg version "$NEW" \
-        '(.plugins[] | select(.name == $name) | .version) = $version' \
-        "$MARKETPLACE" > "${MARKETPLACE}.tmp" && mv "${MARKETPLACE}.tmp" "$MARKETPLACE"
+    # Update marketplace.json if it has this plugin
+    if [[ -f "$MARKETPLACE" ]]; then
+        if jq -e --arg name "$PLUGIN" '.plugins[] | select(.name == $name)' "$MARKETPLACE" > /dev/null 2>&1; then
+            jq --arg name "$PLUGIN" --arg version "$NEW" \
+                '(.plugins[] | select(.name == $name) | .version) = $version' \
+                "$MARKETPLACE" > "${MARKETPLACE}.tmp" && mv "${MARKETPLACE}.tmp" "$MARKETPLACE"
+        fi
+    fi
 
     # Update plugin's own plugin.json
     jq --arg version "$NEW" '.version = $version' \
         "$PLUGIN_JSON" > "${PLUGIN_JSON}.tmp" && mv "${PLUGIN_JSON}.tmp" "$PLUGIN_JSON"
 
     echo "✅ Updated:"
-    echo "   - $MARKETPLACE"
     echo "   - $PLUGIN_JSON"
+    [[ -f "$MARKETPLACE" ]] && echo "   - $MARKETPLACE"
     echo ""
     echo "Next: git add -A && git commit -m 'chore($PLUGIN): bump to $NEW'"
-
-# Bump marketplace catalog version
-bump-marketplace level="patch":
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    LEVEL="{{level}}"
-    MARKETPLACE=".claude-plugin/marketplace.json"
-    ROOT_PLUGIN=".claude-plugin/plugin.json"
-    MANIFEST=".release-please-manifest.json"
-
-    # Get current version
-    CURRENT=$(jq -r '.metadata.version // "0.0.0"' "$MARKETPLACE")
-
-    # Parse and bump
-    IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
-    case "$LEVEL" in
-        major) NEW="$((MAJOR + 1)).0.0" ;;
-        minor) NEW="${MAJOR}.$((MINOR + 1)).0" ;;
-        patch) NEW="${MAJOR}.${MINOR}.$((PATCH + 1))" ;;
-        *) echo "❌ Invalid level: $LEVEL"; exit 1 ;;
-    esac
-
-    echo "📦 Bumping marketplace: $CURRENT → $NEW"
-
-    # Update all marketplace version locations
-    jq --arg v "$NEW" '.metadata.version = $v' "$MARKETPLACE" > "${MARKETPLACE}.tmp" && mv "${MARKETPLACE}.tmp" "$MARKETPLACE"
-    jq --arg v "$NEW" '.version = $v' "$ROOT_PLUGIN" > "${ROOT_PLUGIN}.tmp" && mv "${ROOT_PLUGIN}.tmp" "$ROOT_PLUGIN"
-    jq --arg v "$NEW" '."."] = $v' "$MANIFEST" > "${MANIFEST}.tmp" && mv "${MANIFEST}.tmp" "$MANIFEST"
-
-    echo "✅ Updated marketplace to $NEW"
-
-# Release a plugin (bump + commit + push)
-release-plugin plugin level="patch" message="":
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    PLUGIN="{{plugin}}"
-    LEVEL="{{level}}"
-    MSG="{{message}}"
-
-    # Bump the version
-    just bump-plugin "$PLUGIN" "$LEVEL"
-
-    # Get new version for commit message
-    NEW=$(jq -r --arg name "$PLUGIN" '.plugins[] | select(.name == $name) | .version' .claude-plugin/marketplace.json)
-
-    # Build commit message
-    if [[ -z "$MSG" ]]; then
-        COMMIT_MSG="chore($PLUGIN): release v$NEW"
-    else
-        COMMIT_MSG="chore($PLUGIN): release v$NEW - $MSG"
-    fi
-
-    # Commit and push
-    git add -A
-    git commit -m "$COMMIT_MSG"
-    git push origin main
-
-    echo ""
-    echo "🚀 Released $PLUGIN v$NEW"
 
 # Show current versions of all plugins
 versions:

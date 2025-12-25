@@ -85,7 +85,14 @@ Write documentation for three audiences:
 - Use semantic versioning (MAJOR.MINOR.PATCH)
 - Each plugin tracks its own version independently
 - Marketplace infrastructure has separate versioning
-- Automated releases via semantic-release on conventional commits
+- GitHub Actions credits exhausted - bump versions manually
+
+**Claude plugin versioning** - Each `plugins[].version` in `.claude-plugin/marketplace.json` is compared independently for update detection. The top-level `metadata.version` is just for the marketplace catalog itself.
+
+When releasing a new plugin or update:
+1. Bump the specific `plugins[].version` in `marketplace.json`
+2. Update the plugin's own `.claude-plugin/plugin.json` version
+3. Optionally bump `metadata.version` to signal catalog changes
 
 ### Commit Messages
 

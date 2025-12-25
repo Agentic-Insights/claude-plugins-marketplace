@@ -12,7 +12,7 @@
       "name": "build-agent-skills",
       "source": "./plugins/build-agent-skills",
       "description": "Build skills with the Agent Skills open standard - create, validate, and publish portable skills for AI agents",
-      "version": "2.3.0",
+      "version": "2.5.0",
       "author": {
         "name": "agentic-insights"
       },
@@ -111,7 +111,7 @@
       "name": "adversarial-coach",
       "source": "./plugins/adversarial-coach",
       "description": "Adversarial code review based on Block's g3 dialectical autocoding research - validates implementations against requirements with fresh context objectivity",
-      "version": "0.1.0",
+      "version": "0.9.0",
       "author": {
         "name": "agentic-insights"
       },

@@ -1,6 +1,6 @@
 {
   "name": "adversarial-coach",
-  "version": "0.2.0",
+  "version": "0.9.0",
   "description": "Adversarial code review subagent based on Block's g3 dialectical autocoding research - validates implementations against requirements with fresh context objectivity",
   "author": {
     "name": "agentic-insights"

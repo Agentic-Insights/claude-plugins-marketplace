@@ -39,17 +39,21 @@ while IFS= read -r plugin_dir; do
     changed_plugins+=("$plugin_name")
 done < <(find "$REPO_ROOT/plugins" -maxdepth 1 -type d ! -name plugins)
 
-# If no uncommitted changes, check for commits since last tag
+# If no uncommitted changes, check for commits since main branch
 if [ ${#changed_plugins[@]} -eq 0 ]; then
-    echo "No uncommitted changes detected. Checking recent commits..."
+    echo "No uncommitted changes detected. Checking for commits since main..."
 
-    last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "HEAD~10")
+    # Compare against main or origin/main
+    compare_branch="main"
+    if ! git rev-parse --verify "$compare_branch" &>/dev/null; then
+        compare_branch="origin/main"
+    fi
 
     while IFS= read -r plugin_dir; do
         [ -z "$plugin_dir" ] && continue
         plugin_name=$(basename "$plugin_dir")
 
-        if git log "${last_tag}..HEAD" --oneline -- "$plugin_dir" 2>/dev/null | grep -q .; then
+        if git diff "$compare_branch..." --name-only -- "$plugin_dir" 2>/dev/null | grep -q .; then
             changed_plugins+=("$plugin_name")
         fi
     done < <(find "$REPO_ROOT/plugins" -maxdepth 1 -type d ! -name plugins)
@@ -95,20 +99,28 @@ for plugin in "${changed_plugins[@]}"; do
     echo "📦 $plugin: $current → $new"
 
     # Update plugin's plugin.json
-    jq --arg version "$new" '.version = $version' "$plugin_json" > "${plugin_json}.tmp" && \
-        mv "${plugin_json}.tmp" "$plugin_json"
+    if ! jq --arg version "$new" '.version = $version' "$plugin_json" > "${plugin_json}.tmp"; then
+        echo "❌ Failed to update $plugin_json"
+        rm -f "${plugin_json}.tmp"
+        continue
+    fi
+    mv "${plugin_json}.tmp" "$plugin_json"
 
     # Update marketplace.json if it exists and has this plugin
     if [ -f "$MARKETPLACE" ]; then
         if jq -e --arg name "$plugin" '.plugins[] | select(.name == $name)' "$MARKETPLACE" > /dev/null 2>&1; then
-            jq --arg name "$plugin" --arg version "$new" \
+            if ! jq --arg name "$plugin" --arg version "$new" \
                 '(.plugins[] | select(.name == $name) | .version) = $version' \
-                "$MARKETPLACE" > "${MARKETPLACE}.tmp" && \
-                mv "${MARKETPLACE}.tmp" "$MARKETPLACE"
+                "$MARKETPLACE" > "${MARKETPLACE}.tmp"; then
+                echo "❌ Failed to update $MARKETPLACE"
+                rm -f "${MARKETPLACE}.tmp"
+                continue
+            fi
+            mv "${MARKETPLACE}.tmp" "$MARKETPLACE"
         fi
     fi
 
-    ((bumped_count++))
+    bumped_count=$((bumped_count + 1))
 done
 
 echo ""

@@ -67,6 +67,10 @@ Turn 4: Add context (why/when it matters)
 Turn 5: Polish for nuance (resolve ambiguities)
 ```
 
+## Credits
+
+The copywriter skill patterns are adapted from [@daffy0208/ai-dev-standards](https://github.com/daffy0208/ai-dev-standards) (MIT License).
+
 ## License
 
 Apache-2.0

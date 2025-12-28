@@ -19,7 +19,7 @@ Generate lint data by analyzing all plugins:
 
 ```bash
 # From marketplace repository root
-cd <path-to-claude-plugins-marketplace>
+cd <path-to-foundry>
 uv run scripts/marketplace-linter.py
 ```
 

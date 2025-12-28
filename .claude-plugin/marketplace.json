@@ -1,5 +1,5 @@
 {
-  "name": "agentic-insights-marketplace",
+  "name": "foundry",
   "owner": {
     "name": "agentic-insights"
   },
@@ -105,7 +105,7 @@
         "cli",
         "documentation"
       ],
-      "license": "MIT"
+      "license": "Apache-2.0"
     },
     {
       "name": "adversarial-coach",

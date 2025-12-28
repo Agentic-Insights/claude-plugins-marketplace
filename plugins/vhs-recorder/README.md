@@ -27,7 +27,7 @@ VHS is a tool for generating terminal GIFs, MP4s, and WebM videos from declarati
 claude-code plugin install agentic-insights/vhs-recorder
 
 # Or install from local path
-claude-code plugin install /path/to/claude-plugins-marketplace/plugins/vhs-recorder
+claude-code plugin install /path/to/foundry/plugins/vhs-recorder
 ```
 
 ### Install VHS and Dependencies
@@ -310,12 +310,12 @@ See [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines.
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+Apache License 2.0 - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Agentic-Insights/claude-plugins-marketplace/discussions)
+- **Issues**: [GitHub Issues](https://github.com/agentic-insights/foundry/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/agentic-insights/foundry/discussions)
 - **VHS Issues**: [VHS GitHub Issues](https://github.com/charmbracelet/vhs/issues)
 
 ---

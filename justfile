@@ -175,3 +175,18 @@ add-plugin plugin:
        }]' "$MARKETPLACE" > "${MARKETPLACE}.tmp" && mv "${MARKETPLACE}.tmp" "$MARKETPLACE"
 
     echo "✅ Added $PLUGIN to marketplace.json"
+
+# Lint marketplace and launch browser with live dashboard
+browse-marketplace PORT="8000":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "📊 Generating marketplace linting report..."
+    uv run scripts/marketplace-linter.py
+    echo ""
+    echo "🚀 Launching marketplace browser on port {{PORT}}..."
+    echo ""
+    echo "📖 Open browser: http://localhost:{{PORT}}/scripts/marketplace-browser.html"
+    echo ""
+    echo "Press Ctrl+C to stop the server"
+    echo ""
+    python3 -m http.server {{PORT}}

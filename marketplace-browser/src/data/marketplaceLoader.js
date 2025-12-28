@@ -11,7 +11,7 @@ export async function loadMarketplace() {
 
     const url = isDev
       ? '../.claude-plugin/marketplace.json'
-      : 'https://raw.githubusercontent.com/Agentic-Insights/claude-plugins-marketplace/main/.claude-plugin/marketplace.json';
+      : 'https://raw.githubusercontent.com/agentic-insights/foundry/main/.claude-plugin/marketplace.json';
 
     const response = await fetch(url);
     if (!response.ok) {
@@ -82,7 +82,7 @@ export async function loadPluginReadme(pluginName) {
 
     const url = isDev
       ? `../plugins/${pluginName}/README.md`
-      : `https://raw.githubusercontent.com/Agentic-Insights/claude-plugins-marketplace/main/plugins/${pluginName}/README.md`;
+      : `https://raw.githubusercontent.com/agentic-insights/foundry/main/plugins/${pluginName}/README.md`;
 
     const response = await fetch(url);
     if (!response.ok) {

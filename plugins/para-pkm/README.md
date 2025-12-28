@@ -35,10 +35,10 @@ Install this plugin in Claude Code:
 
 ```bash
 # Clone the marketplace repository
-git clone https://github.com/Agentic-Insights/claude-plugins-marketplace.git
+git clone https://github.com/agentic-insights/foundry.git
 
 # Link the para-pkm plugin
-cd claude-plugins-marketplace
+cd foundry
 claude-code plugins link plugins/para-pkm
 
 # Verify installation
@@ -77,7 +77,7 @@ claude-code plugins list
 
 ```bash
 # Use the initialization script
-cd ~/projects/claude-plugins-marketplace/plugins/para-pkm
+cd ~/projects/foundry/plugins/para-pkm
 python skills/para-pkm/scripts/init_para_kb.py my-knowledge-base
 ```
 
@@ -387,7 +387,7 @@ Cross-reference between files.
 - [Forte Labs Blog](https://fortelabs.com/blog/) - Official PARA resources
 
 ### Community
-- [GitHub Discussions](https://github.com/Agentic-Insights/claude-plugins-marketplace/discussions) - Ask questions, share patterns
+- [GitHub Discussions](https://github.com/agentic-insights/foundry/discussions) - Ask questions, share patterns
 
 ## License
 
@@ -397,4 +397,4 @@ This plugin is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for
 
 Created by [Agentic Insights](https://agenticinsights.com) - AI engineering consulting.
 
-Part of the [Claude Plugins Marketplace](https://github.com/Agentic-Insights/claude-plugins-marketplace).
+Part of the [Agentic Insights Foundry](https://github.com/agentic-insights/foundry).

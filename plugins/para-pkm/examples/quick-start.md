@@ -9,7 +9,7 @@ You're a software developer who wants to organize your notes, projects, and reso
 ## Step 1: Create Knowledge Base
 
 ```bash
-cd ~/projects/claude-plugins-marketplace/plugins/para-pkm
+cd ~/projects/foundry/plugins/para-pkm
 python skills/para-pkm/scripts/init_para_kb.py my-dev-kb
 ```
 

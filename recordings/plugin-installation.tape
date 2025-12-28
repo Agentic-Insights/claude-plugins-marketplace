@@ -21,8 +21,8 @@ Type "claude" Sleep 600ms
 Enter
 Sleep 4s
 
-# Step 2: Install the marketplace
-Type "/plugin marketplace add Agentic-Insights/claude-plugins-marketplace" Sleep 500ms
+# Step 2: Install the foundry
+Type "/plugin marketplace add agentic-insights/foundry" Sleep 500ms
 Enter
 Sleep 4s
 
@@ -51,7 +51,7 @@ Ctrl+C
 
 # Final message
 Sleep 1s
-Type "# ✓ Marketplace installed - plugins ready to discover!" Sleep 500ms Enter
-Type "# Visit: https://github.com/Agentic-Insights/claude-plugins-marketplace" Sleep 500ms Enter
+Type "# ✓ Foundry installed - plugins ready to discover!" Sleep 500ms Enter
+Type "# Visit: https://github.com/agentic-insights/foundry" Sleep 500ms Enter
 
 Sleep 3s

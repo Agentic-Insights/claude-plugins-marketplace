@@ -197,7 +197,7 @@ export function PluginDetail({ plugin, onClose }) {
                     <p>No documentation available</p>
                     <p className="text-sm mt-2">
                       <a
-                        href={`https://github.com/Agentic-Insights/claude-plugins-marketplace/tree/main/plugins/${plugin.name}`}
+                        href={`https://github.com/agentic-insights/foundry/tree/main/plugins/${plugin.name}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-400 hover:text-blue-300"

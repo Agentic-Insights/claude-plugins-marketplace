@@ -5,7 +5,7 @@
   "author": {
     "name": "agentic-insights"
   },
-  "repository": "https://github.com/Agentic-Insights/claude-plugins-marketplace",
+  "repository": "https://github.com/agentic-insights/foundry",
   "license": "Apache-2.0",
   "keywords": [
     "aws",

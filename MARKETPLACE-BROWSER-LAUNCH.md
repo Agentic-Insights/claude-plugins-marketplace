@@ -4,7 +4,7 @@
 
 ```bash
 # Navigate to the marketplace repository root
-cd <path-to-claude-plugins-marketplace>
+cd <path-to-foundry>
 scripts/launch-marketplace-browser.sh
 ```
 
@@ -195,7 +195,7 @@ uv run scripts/marketplace-linter.py || exit 1
 curl http://localhost:8000/marketplace-browser.html
 
 # If not, start manually:
-cd <path-to-claude-plugins-marketplace>
+cd <path-to-foundry>
 python3 -m http.server 8000
 ```
 

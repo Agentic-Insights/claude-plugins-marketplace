@@ -31,4 +31,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tested with `skills-ref validate` - passes all checks
 - Cross-platform compatible structure
 
-[1.0.0]: https://github.com/Agentic-Insights/claude-plugins-marketplace/releases/tag/agent-skills-v1.0.0
+[1.0.0]: https://github.com/agentic-insights/foundry/releases/tag/agent-skills-v1.0.0

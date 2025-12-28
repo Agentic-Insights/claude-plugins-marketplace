@@ -37,4 +37,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Anti-patterns to avoid
 - Troubleshooting guide
 
-[1.0.0]: https://github.com/Agentic-Insights/claude-plugins-marketplace/releases/tag/para-pkm-v1.0.0
+[1.0.0]: https://github.com/agentic-insights/foundry/releases/tag/para-pkm-v1.0.0

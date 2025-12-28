@@ -1,13 +1,13 @@
-# Agentic Insights Plugin Marketplace
+# Agentic Insights Foundry
 
-**Claude Code plugins for AI engineering.**
+**Where agentic tools are forged.** Claude Code plugins for AI engineering.
 
 ![Plugin Installation Demo](./recordings/plugin-installation.gif)
 
 ## Quick Install
 
 ```bash
-/plugin marketplace add Agentic-Insights/claude-plugins-marketplace
+/plugin marketplace add agentic-insights/foundry
 ```
 
 ## Plugins
@@ -114,4 +114,4 @@ AI engineering consulting for startups and scale-ups. These plugins encode patte
 
 ## Contributing
 
-[GitHub Issues](https://github.com/Agentic-Insights/claude-plugins-marketplace/issues) for bugs and feature requests.
+[GitHub Issues](https://github.com/agentic-insights/foundry/issues) for bugs and feature requests.

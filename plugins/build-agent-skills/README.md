@@ -33,10 +33,10 @@ Install this plugin in Claude Code:
 
 ```bash
 # Clone the marketplace repository
-git clone https://github.com/Agentic-Insights/claude-plugins-marketplace.git
+git clone https://github.com/agentic-insights/foundry.git
 
 # Link the build-agent-skills plugin
-cd claude-plugins-marketplace
+cd foundry
 claude-code plugins link plugins/build-agent-skills
 
 # Verify installation
@@ -180,7 +180,7 @@ Skills are designed for efficient context loading:
 ---
 name: python-data-analysis
 description: Analyze CSV data with pandas, generate summary statistics, and create visualizations. Use when exploring datasets or generating reports.
-license: MIT
+license: Apache-2.0
 metadata:
   author: data-team
   version: "1.0"
@@ -331,4 +331,4 @@ Agent Skills is an open standard governed by the community at [github.com/agents
 
 Created by [Agentic Insights](https://agenticinsights.com) - AI engineering consulting.
 
-Part of the [Claude Plugins Marketplace](https://github.com/Agentic-Insights/claude-plugins-marketplace).
+Part of the [Agentic Insights Foundry](https://github.com/agentic-insights/foundry).

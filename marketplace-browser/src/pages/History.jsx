@@ -2,15 +2,18 @@ import { Link } from 'react-router-dom'
 
 export function History() {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50">
+      <header className="border-b border-[var(--ai-border)] bg-[var(--ai-card)]">
         <div className="max-w-4xl mx-auto px-6 py-8">
-          <Link to="/" className="text-blue-400 hover:text-blue-300 text-sm mb-4 inline-block">
-            ← Back to Marketplace
+          <Link to="/" className="text-[var(--ai-green)] hover:underline text-sm mb-4 inline-block font-mono">
+            ← cd /foundry
           </Link>
-          <h1 className="text-4xl font-bold mb-4">The Context Engineering Journey</h1>
-          <p className="text-xl text-gray-400">
+          <div className="font-mono text-[var(--ai-gray-500)] text-sm mb-2">
+            <span className="text-[var(--ai-green)]">$</span> cat HISTORY.md
+          </div>
+          <h1 className="text-3xl font-bold font-mono mb-4">The Context Engineering Journey</h1>
+          <p className="text-lg text-[var(--ai-gray-300)]">
             From .context.md to AGENTS.md to Skills — the evolution of AI context standards
           </p>
         </div>
@@ -21,58 +24,52 @@ export function History() {
         <div className="space-y-12">
 
           {/* Codebase Context */}
-          <section className="relative pl-8 border-l-2 border-blue-500/30">
-            <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-blue-500"></div>
+          <section className="relative pl-8 border-l-2 border-[var(--ai-green)]/30">
+            <div className="absolute -left-[5px] top-0 w-2 h-2 bg-[var(--ai-green)]"></div>
             <div className="mb-2">
-              <span className="text-blue-400 text-sm font-mono">2023-2024</span>
+              <span className="text-[var(--ai-green)] text-sm font-mono">2023-2024</span>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Codebase Context & .context.md</h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <h2 className="text-xl font-bold font-mono text-white mb-4">Codebase Context & .context.md</h2>
+            <p className="text-[var(--ai-gray-300)] mb-6 leading-relaxed text-sm">
               It started with a simple observation: AI coding assistants were missing crucial context.
               They could read code, but they couldn't understand <em>why</em> decisions were made,
               what conventions to follow, or how the pieces fit together.
             </p>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              The <strong>.context.md</strong> specification was born — a way to embed rich,
+            <p className="text-[var(--ai-gray-300)] mb-6 leading-relaxed text-sm">
+              The <strong className="text-white">.context.md</strong> specification was born — a way to embed rich,
               structured context directly in your codebase. Not just for humans, but specifically
               designed for AI consumption.
             </p>
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 mb-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Videos & Talks</h3>
+            <div className="bg-black border border-[var(--ai-border)] p-6 mb-6">
+              <h3 className="text-sm font-mono font-semibold text-white mb-4 uppercase tracking-wider">Videos & Talks</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-blue-400 hover:text-blue-300 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
-                      <path fill="#fff" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
+                  <a href="#" className="text-[var(--ai-green)] hover:underline flex items-center gap-2 text-sm font-mono">
+                    <span className="text-red-500">▶</span>
                     Introduction to Codebase Context (Coming Soon)
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-blue-400 hover:text-blue-300 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5814z"/>
-                      <path fill="#fff" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
+                  <a href="#" className="text-[var(--ai-green)] hover:underline flex items-center gap-2 text-sm font-mono">
+                    <span className="text-red-500">▶</span>
                     Austin LangChain Meetup: Context Engineering (Coming Soon)
                   </a>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
-              <ul className="space-y-2">
+            <div className="bg-black border border-[var(--ai-border)] p-6">
+              <h3 className="text-sm font-mono font-semibold text-white mb-4 uppercase tracking-wider">Resources</h3>
+              <ul className="space-y-2 text-sm font-mono">
                 <li>
-                  <a href="https://github.com/Agentic-Insights/codebase-context-spec" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
-                    📄 Original Codebase Context Specification
+                  <a href="https://github.com/Agentic-Insights/codebase-context-spec" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">
+                    → Original Codebase Context Specification
                   </a>
                 </li>
                 <li>
-                  <a href="https://codebasecontext.org" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
-                    🌐 codebasecontext.org (legacy docs)
+                  <a href="https://codebasecontext.org" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">
+                    → codebasecontext.org (legacy docs)
                   </a>
                 </li>
               </ul>
@@ -80,33 +77,33 @@ export function History() {
           </section>
 
           {/* AGENTS.md */}
-          <section className="relative pl-8 border-l-2 border-purple-500/30">
-            <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-purple-500"></div>
+          <section className="relative pl-8 border-l-2 border-[var(--ai-green)]/30">
+            <div className="absolute -left-[5px] top-0 w-2 h-2 bg-[var(--ai-green)]"></div>
             <div className="mb-2">
-              <span className="text-purple-400 text-sm font-mono">2024</span>
+              <span className="text-[var(--ai-green)] text-sm font-mono">2024</span>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">AGENTS.md — Industry Adoption</h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <h2 className="text-xl font-bold font-mono text-white mb-4">AGENTS.md — Industry Adoption</h2>
+            <p className="text-[var(--ai-gray-300)] mb-6 leading-relaxed text-sm">
               The ideas from .context.md gained traction. Anthropic, OpenAI, and others began
-              adopting similar patterns. The community standardized on <strong>AGENTS.md</strong> —
+              adopting similar patterns. The community standardized on <strong className="text-white">AGENTS.md</strong> —
               a simpler, more focused format for agent instructions.
             </p>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-[var(--ai-gray-300)] mb-6 leading-relaxed text-sm">
               AGENTS.md became the de facto standard for telling AI agents how to work in your
               codebase. Claude Code, Cursor, Windsurf, and others now look for these files automatically.
             </p>
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
-              <ul className="space-y-2">
+            <div className="bg-black border border-[var(--ai-border)] p-6">
+              <h3 className="text-sm font-mono font-semibold text-white mb-4 uppercase tracking-wider">Resources</h3>
+              <ul className="space-y-2 text-sm font-mono">
                 <li>
-                  <a href="https://agents.md" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
-                    🤖 agents.md — The Standard
+                  <a href="https://agents.md" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">
+                    → agents.md — The Standard
                   </a>
                 </li>
                 <li>
-                  <a href="https://docs.anthropic.com/en/docs/claude-code/memory#agentsmd" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
-                    📚 Claude Code AGENTS.md Documentation
+                  <a href="https://docs.anthropic.com/en/docs/claude-code/memory#agentsmd" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">
+                    → Claude Code AGENTS.md Documentation
                   </a>
                 </li>
               </ul>
@@ -114,38 +111,38 @@ export function History() {
           </section>
 
           {/* Agent Skills */}
-          <section className="relative pl-8 border-l-2 border-green-500/30">
-            <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-green-500"></div>
+          <section className="relative pl-8 border-l-2 border-[var(--ai-green)]/30">
+            <div className="absolute -left-[5px] top-0 w-2 h-2 bg-[var(--ai-green)]"></div>
             <div className="mb-2">
-              <span className="text-green-400 text-sm font-mono">2025</span>
+              <span className="text-[var(--ai-green)] text-sm font-mono">2025</span>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Agent Skills — Portable Capabilities</h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              The next evolution: <strong>Skills</strong>. Not just static context, but portable,
+            <h2 className="text-xl font-bold font-mono text-white mb-4">Agent Skills — Portable Capabilities</h2>
+            <p className="text-[var(--ai-gray-300)] mb-6 leading-relaxed text-sm">
+              The next evolution: <strong className="text-white">Skills</strong>. Not just static context, but portable,
               reusable capabilities that agents can invoke. Skills combine instructions, scripts,
               reference materials, and assets into shareable packages.
             </p>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              The <a href="https://agentskills.io" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Agent Skills specification</a> is
+            <p className="text-[var(--ai-gray-300)] mb-6 leading-relaxed text-sm">
+              The <a href="https://agentskills.io" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">Agent Skills specification</a> is
               an open standard — supported by Claude Code, and designed for cross-platform compatibility.
             </p>
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
-              <ul className="space-y-2">
+            <div className="bg-black border border-[var(--ai-border)] p-6">
+              <h3 className="text-sm font-mono font-semibold text-white mb-4 uppercase tracking-wider">Resources</h3>
+              <ul className="space-y-2 text-sm font-mono">
                 <li>
-                  <a href="https://agentskills.io" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
-                    ⚡ agentskills.io — The Specification
+                  <a href="https://agentskills.io" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">
+                    → agentskills.io — The Specification
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/agentskills/agentskills" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
-                    🔧 skills-ref validator tool
+                  <a href="https://github.com/agentskills/agentskills" target="_blank" rel="noopener noreferrer" className="text-[var(--ai-green)] hover:underline">
+                    → skills-ref validator tool
                   </a>
                 </li>
                 <li>
-                  <Link to="/" className="text-blue-400 hover:text-blue-300">
-                    🏭 Foundry Marketplace — Skills in Action
+                  <Link to="/#marketplace" className="text-[var(--ai-green)] hover:underline">
+                    → Foundry Marketplace — Skills in Action
                   </Link>
                 </li>
               </ul>
@@ -153,31 +150,31 @@ export function History() {
           </section>
 
           {/* Philosophy */}
-          <section className="mt-16 bg-gray-900/30 border border-gray-800 rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">The Philosophy</h2>
+          <section className="mt-16 bg-black border border-[var(--ai-border)] p-8">
+            <h2 className="text-xl font-bold font-mono text-white mb-6">The Philosophy</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-semibold text-blue-400 mb-2">Context over Prompting</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-sm font-mono font-semibold text-[var(--ai-green)] mb-2 uppercase tracking-wider">Context over Prompting</h3>
+                <p className="text-[var(--ai-gray-500)] text-sm">
                   Rich, structured context beats clever prompt tricks. Give agents the information
                   they need upfront.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-purple-400 mb-2">Open Standards</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-sm font-mono font-semibold text-[var(--ai-green)] mb-2 uppercase tracking-wider">Open Standards</h3>
+                <p className="text-[var(--ai-gray-500)] text-sm">
                   Portable formats that work across tools and vendors. No lock-in, no proprietary formats.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-green-400 mb-2">Consulting-Grade</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-sm font-mono font-semibold text-[var(--ai-green)] mb-2 uppercase tracking-wider">Consulting-Grade</h3>
+                <p className="text-[var(--ai-gray-500)] text-sm">
                   Production patterns from real client engagements. Battle-tested, not theoretical.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-yellow-400 mb-2">Evidence over Claims</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-sm font-mono font-semibold text-[var(--ai-green)] mb-2 uppercase tracking-wider">Evidence over Claims</h3>
+                <p className="text-[var(--ai-gray-500)] text-sm">
                   Test it, measure it, prove it works. No hype, just results.
                 </p>
               </div>
@@ -188,10 +185,10 @@ export function History() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-8 mt-12">
-        <div className="max-w-4xl mx-auto px-6 text-center text-gray-500 text-sm">
+      <footer className="border-t border-[var(--ai-border)] py-8 mt-12 bg-[var(--ai-card)]">
+        <div className="max-w-4xl mx-auto px-6 text-center text-[var(--ai-gray-500)] text-sm font-mono">
           <p>
-            <Link to="/" className="text-blue-400 hover:text-blue-300">
+            <Link to="/#marketplace" className="text-[var(--ai-green)] hover:underline">
               ← Back to Foundry Marketplace
             </Link>
           </p>

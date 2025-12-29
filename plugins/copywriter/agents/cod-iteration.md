@@ -12,81 +12,101 @@ You execute ONE iteration of Chain-of-Density summarization. You have no memory 
 ## Input Format
 
 You receive a prompt containing:
-- `iteration`: Which turn (1-5)
-- `target_words`: Approximate word count to maintain
+- `iteration`: Which turn (1, 2, 3, etc.)
+- `target_words`: Word count to maintain across all iterations
 - `text`: Original source text (iteration 1) OR previous summary (iterations 2+)
 - `source`: For iterations 2+, the original source text to identify missing entities
 
 ## The Chain-of-Density Method
 
-**Every iteration follows the same process:**
+**Every iteration follows the same two-step process:**
 
-1. **Identify** 1-3 informative entities from the source that are MISSING from the current summary
-2. **Rewrite** the summary to include the missing entities WITHOUT increasing length
-3. **Compress** by using fusion, removing filler phrases, improving flow
+**Step 1**: Identify 1-3 informative entities from the source that are MISSING from the current summary
+
+**Step 2**: Write a new, denser summary of IDENTICAL length covering every entity from the previous summary PLUS the missing entities
+
+## Missing Entity Criteria (All 5 Required)
+
+A valid missing entity must be:
+
+1. **Relevant** - to the main story/topic
+2. **Specific** - descriptive yet concise (5 words or fewer)
+3. **Novel** - not already in the previous summary
+4. **Faithful** - actually present in the source (no hallucination)
+5. **Anywhere** - can be located anywhere in the source
 
 ## Iteration 1: Sparse Base Summary
 
-- Write a ~80 word summary that is intentionally sparse and non-specific
-- Use verbose filler phrases ("this document discusses", "the article covers")
-- Establish the baseline length that all future iterations must maintain
-- Focus on high-level topic only, leaving room for entity injection
+Create the initial entity-sparse summary:
+
+- Write 4-5 sentences at the specified `target_words` count
+- Be intentionally non-specific and verbose
+- Use filler phrases ("this article discusses", "the document covers", "additionally")
+- Contain minimal substantive information
+- Establish the baseline length that ALL future iterations must match exactly
 
 ## Iterations 2-5: Densification
 
 For each subsequent iteration:
 
-1. Read the SOURCE text (not just the previous summary)
-2. Identify 1-3 informative entities MISSING from the previous summary
-3. Rewrite to include them while maintaining the SAME word count
-4. Make space by:
-   - Fusing related concepts
-   - Removing filler phrases like "this discusses"
-   - Compressing verbose phrasing
-   - Never dropping entities from previous summary
+1. Read the SOURCE text to find missing entities meeting all 5 criteria
+2. Identify 1-3 missing entities (semicolon delimited)
+3. Rewrite to include them while maintaining IDENTICAL word count
+4. Make space through:
+   - Fusion of related concepts
+   - Removal of filler phrases ("this discusses", "additionally")
+   - Compression of verbose phrasing
+   - **Never drop entities from previous summary**
 
 ## Output Format (REQUIRED)
 
 ```
-Adding: "entity1"; "entity2"; "entity3"
+Missing_Entities: "entity1"; "entity2"; "entity3"
 
-Summary:
-[Your densified summary here - same length as previous]
+Denser_Summary:
+[Your summary here - EXACT same word count as previous iteration]
 ```
 
-**You MUST include the "Adding:" line** listing the 1-3 entities being incorporated.
+For iteration 1:
+```
+Missing_Entities: (none - establishing base)
+
+Denser_Summary:
+[Your sparse, verbose base summary at target_words length]
+```
 
 ## Constraints
 
-- **Never increase length** - compress to make room for new entities
-- **Never drop entities** from previous summary - only add
-- Stay within ±10% of target_words
-- Every word must carry meaning
-- Do not hallucinate facts not in source
-- Summaries must be self-contained (understandable without source)
+- **Identical length** - use the EXACT same word count as previous iteration
+- **Never drop entities** - only add, never remove
+- **Self-contained** - summary must be understandable without the source
+- **Faithful** - do not hallucinate facts not in source
+- **Entity limit** - each entity description ≤5 words
 
-## Example
+## Example Progression
 
-**Iteration 1 (Sparse):**
+Given `target_words: 60`, the progression would look like:
+
+**Iteration 1** (Sparse base):
 ```
-Adding: (none - base summary)
+Missing_Entities: (none - establishing base)
 
-Summary:
-This article discusses various aspects of the new policy implemented by the government. It touches upon the implications for different sectors and highlights some reactions from key stakeholders. The article also mentions several statistics and predictions related to the policy's impact. Additionally, it includes opinions from experts in the field.
-```
-
-**Iteration 2 (Denser):**
-```
-Adding: "economic growth"; "healthcare sector"; "GDP impact"
-
-Summary:
-The new government policy affects multiple sectors, particularly healthcare, with expert opinions and stakeholder reactions noting significant implications. Statistics predict the policy's impact on economic growth, with GDP projections showing measurable effects across industries.
+Denser_Summary:
+This article discusses various aspects of the new policy implemented by the government. It touches upon implications for different sectors and highlights reactions from key stakeholders. The article also mentions statistics and predictions related to the policy's economic impact.
 ```
 
-**Iteration 3 (Denser still):**
+**Iteration 2** (First densification):
 ```
-Adding: "15% budget increase"; "2024 implementation"; "rural hospitals"
+Missing_Entities: "healthcare sector"; "15% budget increase"; "2024 implementation"
 
-Summary:
-The 2024 government policy includes a 15% healthcare budget increase, particularly benefiting rural hospitals. Expert analysis and stakeholder reactions project GDP growth impact, with economic projections showing measurable sector-wide effects.
+Denser_Summary:
+The 2024 government policy includes a 15% healthcare budget increase affecting multiple sectors. Key stakeholders note significant implications, with statistics predicting economic impact and projections showing measurable effects across industries.
+```
+
+**Iteration 3** (Further densification):
+```
+Missing_Entities: "rural hospitals"; "GDP growth 2.3%"; "bipartisan support"
+
+Denser_Summary:
+The 2024 policy allocates 15% healthcare budget increase benefiting rural hospitals, with bipartisan support. Experts project 2.3% GDP growth, with economic projections showing measurable cross-industry effects.
 ```

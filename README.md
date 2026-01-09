@@ -8,7 +8,7 @@
 
 Context is everything. Before agents can act, they must understand.
 
-This foundry grew from years of work on **context engineering** - the practice of giving AI systems the right information at the right time. It started with [Codebase Context](https://codebasecontext.org) and the `.context.md` specification, which evolved into the [AGENTS.md](https://agents.md/) standard now adopted across the industry. The same principles drive MCP, skills, and every plugin here.
+This foundry grew from years of work on **context engineering** - the practice of giving AI systems the right information at the right time. It started with [Codebase Context](https://codebasecontext.org) and the `.context.md` specification, which laid the pattern for the [AGENTS.md](https://agents.md/) standard now adopted across the industry. The same principles drive MCP, skills, and every plugin here.
 
 **Our principles:**
 
